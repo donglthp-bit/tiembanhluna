@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiệm Bánh Luna - Bánh Ngọt Thủ Công Hải Phòng</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter & Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        luna: {
+                            50: '#fbf7f4',
+                            100: '#f5ebe1',
+                            200: '#eaddcd',
+                            300: '#dacbb4',
+                            400: '#c5ae94',
+                            500: '#a6825c',
+                            600: '#946f4b',
+                            700: '#7a5a3a',
+                            800: '#5e432d',
+                            900: '#432e20',
+                            gold: '#d29a5a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Smooth Transitions */
+        .basket-drawer {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .bake-card:hover .price-tag {
+            background-color: #946f4b;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fbf7f4;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dacbb4;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a6825c;
+        }
+    </style>
+</head>
+<body class="bg-luna-50 text-luna-900 font-sans antialiased overflow-x-hidden selection:bg-luna-200">
+
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-luna-100 shadow-sm transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-luna-600 rounded-full flex items-center justify-center shadow-md">
+                    <span class="text-white font-serif text-lg font-bold">L</span>
+                </div>
+                <div>
+                    <h1 class="font-serif text-lg font-bold text-luna-800 tracking-wide leading-none">Luna Bakery</h1>
+                    <span class="text-[9px] text-luna-500 font-medium tracking-wider uppercase block mt-1">Bánh Ngọt Thủ Công HP</span>
+                </div>
+            </a>
+            
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-luna-700">
+                <a href="#" class="hover:text-luna-500 transition-colors">Trang chủ</a>
+                <a href="#menu" class="hover:text-luna-500 transition-colors">Menu mẻ bánh</a>
+                <a href="#builder" class="hover:text-luna-500 transition-colors">Tự phối Topping</a>
+                <a href="#about" class="hover:text-luna-500 transition-colors">Giới thiệu</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <a href="tel:0904123456" class="hidden sm:flex items-center space-x-2 bg-luna-50 text-luna-700 hover:bg-luna-100 px-3.5 py-1.5 rounded-full text-xs font-semibold border border-luna-200 transition-all">
+                    <i class="fa-solid fa-phone text-[10px] text-luna-500 animate-pulse"></i>
+                    <span id="header-hotline">0904123456</span>
+                </a>
+                <button onclick="toggleBasket()" class="relative p-2.5 text-luna-800 hover:text-luna-600 transition-all focus:outline-none">
+                    <div class="relative">
+                        <i class="fa-solid fa-bag-shopping text-xl"></i>
+                        <span id="basket-badge" class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border border-white scale-0 transition-all duration-300">0</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative py-12 md:py-24 overflow-hidden bg-gradient-to-b from-luna-100 to-luna-50">
+        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#a6825c 1px, transparent 1px); background-size: 24px 24px;"></div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+            <div class="md:col-span-7 space-y-6 text-center md:text-left">
+                <div class="inline-flex items-center space-x-2 bg-white px-3.5 py-1.5 rounded-full border border-luna-200 shadow-xs">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-ping"></span>
+                    <span class="text-[10px] font-bold text-luna-700 uppercase tracking-widest">Đang đỏ lửa mẻ bánh hôm nay</span>
+                </div>
+                <h2 class="font-serif text-3xl sm:text-5xl lg:text-6xl text-luna-900 leading-tight">
+                    Nướng trọn <span class="italic text-luna-600">tâm huyết</span><br>
+                    gửi trao từng hương vị
+                </h2>
+                <p class="text-sm sm:text-base text-gray-600 max-w-xl leading-relaxed">
+                    Tại Luna Bakery, mỗi chiếc bánh là một tác phẩm thủ công được cân đo, nướng chuẩn kỹ thuật và bày trí từ những nguyên liệu tươi lành, organic nhất tại Hải Phòng. Không chất bảo quản - An lành từng lát bánh.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 pt-2">
+                    <a href="#menu" class="w-full sm:w-auto text-center bg-luna-600 hover:bg-luna-700 text-white font-semibold text-sm px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all">
+                        Xem Menu Mẻ Bánh
+                    </a>
+                    <a href="#builder" class="w-full sm:w-auto text-center bg-white hover:bg-luna-50 text-luna-700 font-semibold text-sm px-8 py-3.5 rounded-full shadow-sm hover:shadow border border-luna-200 transition-all">
+                        Tự Phối Bánh Kem
+                    </a>
+                </div>
+                <div class="grid grid-cols-3 gap-4 pt-6 border-t border-luna-200">
+                    <div>
+                        <span class="font-serif text-2xl font-bold text-luna-800">100%</span>
+                        <span class="text-[10px] text-gray-500 block uppercase font-medium">Thủ công</span>
+                    </div>
+                    <div>
+                        <span class="font-serif text-2xl font-bold text-luna-800">Fresh</span>
+                        <span class="text-[10px] text-gray-500 block uppercase font-medium">Nướng mỗi ngày</span>
+                    </div>
+                    <div>
+                        <span class="font-serif text-2xl font-bold text-luna-800">0%</span>
+                        <span class="text-[10px] text-gray-500 block uppercase font-medium">Chất bảo quản</span>
+                    </div>
+                </div>
+            </div>
+            <div class="md:col-span-5 relative">
+                <div class="absolute -inset-4 bg-luna-200 rounded-full blur-2xl opacity-40 animate-pulse"></div>
+                <div class="relative bg-white p-4 rounded-3xl shadow-2xl border border-luna-100 transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                    <img src="z7936387852468_7971e590bbdcd3b944f049491c8664d9.jpg" 
+                         alt="Mẻ bánh su kem tươi" 
+                         onerror="this.src='https://placehold.co/600x600/f3eae0/704337?text=Luna+Bakery'"
+                         class="w-full aspect-square object-cover rounded-2xl shadow-inner">
+                    <div class="absolute bottom-8 -left-4 bg-white/95 backdrop-blur-xs p-3.5 rounded-2xl shadow-xl border border-luna-100 flex items-center space-x-3 max-w-xs">
+                        <div class="w-10 h-10 rounded-full bg-luna-100 flex items-center justify-center text-luna-600">
+                            <i class="fa-solid fa-face-smile text-lg"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-gray-400 font-bold block uppercase tracking-wider">Đánh giá</span>
+                            <span class="text-xs font-bold text-luna-800 block">"Mềm mịn béo ngậy, bánh cực kì ngon luôn tiệm ơi!"</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
+                <span class="text-luna-600 text-xs font-bold uppercase tracking-widest block">Thực đơn tươi ngọt</span>
+                <h2 class="font-serif text-3xl sm:text-4xl text-luna-800">Hôm Nay Tiệm Có Gì?</h2>
+                <div class="w-12 h-[3px] bg-luna-500 mx-auto rounded-full"></div>
+                <p class="text-xs sm:text-sm text-gray-500">
+                    Bánh khô giao hàng tận tay toàn quốc, bánh tươi dẻo thơm nướng hỏa tốc giao tận tay quý khách tại Hải Phòng trong ngày.
+                </p>
+            </div>
+
+            <!-- Bộ Lọc Danh Mục -->
+            <div class="flex items-center justify-center space-x-3 mb-10 overflow-x-auto pb-2">
+                <button onclick="filterProducts('all')" class="cat-btn active bg-luna-600 text-white border border-luna-600 px-5 py-2 rounded-full text-xs font-semibold shadow transition-all whitespace-nowrap">
+                    Tất cả sản phẩm
+                </button>
+                <button onclick="filterProducts('all-kho')" class="cat-btn bg-luna-50 text-luna-700 border border-luna-200 hover:bg-luna-100 px-5 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap">
+                    📦 Bánh Khô (Ship Toàn Quốc)
+                </button>
+                <button onclick="filterProducts('all-tuoi')" class="cat-btn bg-luna-50 text-luna-700 border border-luna-200 hover:bg-luna-100 px-5 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap">
+                    🍰 Bánh Tươi (Hải Phòng - Giao Gấp)
+                </button>
+            </div>
+
+            <!-- Khung lưới bánh -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
+                
+                <!-- Bánh Khô 1: Bánh Dứa Đài Loan -->
+                <div class="bake-card bg-white rounded-2xl overflow-hidden border border-luna-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between" data-type="all-kho">
+                    <div class="relative">
+                        <img src="ChatGPT Image 09_55_47 27 thg 6, 2026.png" 
+                             alt="Bánh Dứa Đài Loan" 
+                             onerror="this.src='https://placehold.co/600x400/f3eae0/704337?text=Banh+Dua+Dai+Loan'"
+                             class="w-full h-48 object-cover">
+                        <span class="absolute top-3 right-3 bg-luna-gold text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-widest shadow">Best Seller</span>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="font-serif text-lg font-bold text-luna-700">🍍 Bánh Dứa Đài Loan</h3>
+                            <p class="text-xs text-gray-500 leading-relaxed">
+                                Vỏ bánh dứa mềm tan xốp thơm bơ thượng hạng, ôm trọn phần nhân dứa sên dẻo chua ngọt tự nhiên ngọt thanh dễ ăn cực kỳ cuốn miệng.
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 mt-4 border-t border-luna-50">
+                            <div>
+                                <span class="text-xs text-gray-400 block font-medium">Giá mẻ thủ công</span>
+                                <span class="text-luna-500 font-bold text-base"><span class="price-val" data-prod="Bánh Dứa Đài Loan (Hộp)">85,000</span>đ <span class="text-xs font-normal text-gray-500">/hộp</span></span>
+                            </div>
+                            <button onclick="addProdToCartByElement('Bánh Dứa Đài Loan (Hộp)', 'ChatGPT Image 09_55_47 27 thg 6, 2026.png')" class="bg-luna-500 hover:bg-luna-600 text-white px-3.5 py-2 rounded-full text-xs font-bold transition-all flex items-center space-x-1">
+                                <i class="fa-solid fa-plus text-[10px]"></i><span>Thêm giỏ</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bánh Khô 2: Bánh Quy Yến Mạch Mè Đen -->
+                <div class="bake-card bg-white rounded-2xl overflow-hidden border border-luna-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between" data-type="all-kho">
+                    <div class="relative">
+                        <img src="DSCF3827.jpg" 
+                             alt="Bánh Quy Yến Mạch Mè Đen" 
+                             onerror="this.src='https://placehold.co/600x400/f3eae0/704337?text=Yen+Mach+Me+Den'"
+                             class="w-full h-48 object-cover">
+                        <span class="absolute top-3 right-3 bg-green-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-widest shadow">Healthy Fit</span>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="font-serif text-lg font-bold text-luna-700">🌾 Bánh Quy Yến Mạch Mè Đen</h3>
+                            <p class="text-xs text-gray-500 leading-relaxed">
+                                Dòng bánh quy ăn kiêng, giòn bùi thơm lừng yến mạch hữu cơ cùng hạt mè đen, cực kì lý tưởng cho chế độ ăn lành mạnh, ít ngọt.
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 mt-4 border-t border-luna-50">
+                            <div>
+                                <span class="text-xs text-gray-400 block font-medium">Giá mẻ thủ công</span>
+                                <span class="text-luna-500 font-bold text-base"><span class="price-val" data-prod="Bánh Quy Yến Mạch Mè Đen (Túi)">75,000</span>đ <span class="text-xs font-normal text-gray-500">/túi</span></span>
+                            </div>
+                            <button onclick="addProdToCartByElement('Bánh Quy Yến Mạch Mè Đen (Túi)', 'DSCF3827.jpg')" class="bg-luna-500 hover:bg-luna-600 text-white px-3.5 py-2 rounded-full text-xs font-bold transition-all flex items-center space-x-1">
+                                <i class="fa-solid fa-plus text-[10px]"></i><span>Thêm giỏ</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bánh Khô 3: Bánh Quy Mè Đen Nguyên Cám -->
+                <div class="bake-card bg-white rounded-2xl overflow-hidden border border-luna-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between" data-type="all-kho">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=600&auto=format&fit=crop" 
+                             alt="Bánh Quy Mè Đen Nguyên Cám" 
+                             onerror="this.src='https://placehold.co/600x400/f3eae0/704337?text=Me+Den+Nguyen+Cam'"
+                             class="w-full h-48 object-cover">
+                        <span class="absolute top-3 right-3 bg-amber-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-widest shadow">Whole Wheat</span>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="font-serif text-lg font-bold text-luna-700">🍪 Bánh Quy Mè Đen Nguyên Cám</h3>
+                            <p class="text-xs text-gray-500 leading-relaxed">
+                                Sử dụng 100% bột nguyên cám dồi dào chất xơ, bơ nhạt béo nhẹ và hạt mè thơm bùi. Rất ít đường, hỗ trợ tiêu hóa tốt cho cả gia đình.
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 mt-4 border-t border-luna-50">
+                            <div>
+                                <span class="text-xs text-gray-400 block font-medium">Giá mẻ thủ công</span>
+                                <span class="text-luna-500 font-bold text-base"><span class="price-val" data-prod="Bánh Quy Mè Đen Nguyên Cám">75,000</span>đ <span class="text-xs font-normal text-gray-500">/túi</span></span>
+                            </div>
+                            <button onclick="addProdToCartByElement('Bánh Quy Mè Đen Nguyên Cám', 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=600&auto=format&fit=crop')" class="bg-luna-500 hover:bg-luna-600 text-white px-3.5 py-2 rounded-full text-xs font-bold transition-all flex items-center space-x-1">
+                                <i class="fa-solid fa-plus text-[10px]"></i><span>Thêm giỏ</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bánh Khô 4: Bánh Quy Bơ Hạnh Nhân -->
+                <div class="bake-card bg-white rounded-2xl overflow-hidden border border-luna-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between" data-type="all-kho">
+                    <div class="relative">
+                        <img src="IMG_8858.jpg" 
+                             alt="Bánh Quy Bơ Hạnh Nhân" 
+                             onerror="this.src='https://placehold.co/600x400/f3eae0/704337?text=Cookies+Banh+Hanh+Nhan'"
+                             class="w-full h-48 object-cover">
+                        <span class="absolute top-3 right-3 bg-amber-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-widest shadow">Premium</span>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="font-serif text-lg font-bold text-luna-700">🌰 Bánh Quy Bơ Hạnh Nhân</h3>
+                            <p class="text-xs text-gray-500 leading-relaxed">
+                                Dòng bánh quy ngập tràn vị bơ Elle & Vire nhập khẩu Pháp thượng hạng phối hạt hạnh nhân nguyên tấm béo ngậy nướng sấy giòn tan.
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 mt-4 border-t border-luna-50">
+                            <div>
+                                <span class="text-xs text-gray-400 block font-medium">Giá mẻ thủ công</span>
+                                <span class="text-luna-500 font-bold text-base"><span class="price-val" data-prod="Bánh Quy Bơ Hạnh Nhân (Hộp)">90,000</span>đ <span class="text-xs font-normal text-gray-500">/hộp</span></span>
+                            </div>
+                            <button onclick="addProdToCartByElement('Bánh Quy Bơ Hạnh Nhân (Hộp)', 'IMG_8858.jpg')" class="bg-luna-500 hover:bg-luna-600 text-white px-3.5 py-2 rounded-full text-xs font-bold transition-all flex items-center space-x-1">
+                                <i class="fa-solid fa-plus text-[10px]"></i><span>Thêm giỏ</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bánh Khô 5: Bánh Quy Bơ Matcha -->
+                <div class="bake-card bg-white rounded-2xl overflow-hidden border border-luna-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between" data-type="all-kho">
+                    <div class="relative">
+                        <img src="ChatGPT Image 10_03_09 27 thg 6, 2026.png" 
+                             alt="Bánh Quy Bơ Matcha" 
+                             onerror="this.src='https://placehold.co/600x400/f3eae0/704337?text=Banh+Quy+Matcha'"
+                             class="w-full h-48 object-cover">
+                        <span class="absolute top-3 right-3 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-widest shadow">Japan Matcha</span>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="font-serif text-lg font-bold text-luna-700">🍵 Bánh Quy Mơ Matcha</h3>
+                            <p class="text-xs text-gray-500 leading-relaxed">
+                                Sử dụng bột matcha Uji hảo hạng nguyên chất, thoảng chút chát nhẹ phối vị ngọt mát của mơ dẻo thái nhỏ nướng chín mộc giòn xốp.
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 mt-4 border-t border-luna-50">
+                            <div>
+                                <span class="text-xs text-gray-400 block font-medium">Giá mẻ thủ công</span>
+                                <span class="text-luna-500 font-bold text-base"><span class="price-val" data-prod="Bánh Quy Mơ Matcha (Hộp)">95,000</span>đ <span class="text-xs font-normal text-gray-500">/hộp</span></span>
+                            </div>
+                            <button onclick="addProdToCartByElement('Bánh Quy Mơ Matcha (Hộp)', 'ChatGPT Image 10_03_09 27 thg 6, 2026.png')" class="bg-luna-500 hover:bg-luna-600 text-white px-3.5 py-2 rounded-full text-xs font-bold transition-all flex items-center space-x-1">
+                                <i class="fa-solid fa-plus text-[10px]"></i><span>Thêm giỏ</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bánh Khô 6: Bánh Hạnh Nhân & Biscotti -->
+                <div class="bake-card bg-white rounded-2xl overflow-hidden border border-luna-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between" data-type="all-kho">
+                    <div class="relative">
+                        <img src="ChatGPT Image 09_51_01 27 thg 6, 2026.png" 
+                             alt="Biscotti Ý" 
+                             onerror="this.src='https://placehold.co/600x400/f3eae0/704337?text=Biscotti+Y'"
+                             class="w-full h-48 object-cover">
+                        <span class="absolute top-3 right-3 bg-luna-gold text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-widest shadow">Premium Italian</span>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="font-serif text-lg font-bold text-luna-700">🥖 Biscotti Ngũ Cốc Ý</h3>
+                            <p class="text-xs text-gray-500 leading-relaxed">
+                                Được nướng chính xác 2 lần theo tiêu chuẩn công thức nước Ý cổ điển, giòn rụm hoàn hảo, ngập tràn các hạt dinh dưỡng cao cấp (hạnh nhân, mơ dẻo, hạt bí). Cực kỳ ăn ý khi chấm cùng sữa tươi hay trà nóng.
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 mt-4 border-t border-luna-50">
+                            <div>
+                                <span class="text-xs text-gray-400 block font-medium">Giá mẻ thủ công</span>
+                                <span class="text-luna-500 font-bold text-base"><span class="price-val" data-prod="Biscotti Ngũ Cốc Ý (Hộp)">120,000</span>đ <span class="text-xs font-normal text-gray-500">/hộp</span></span>
+                            </div>
+                            <button onclick="addProdToCartByElement('Biscotti Ngũ Cốc Ý (Hộp)', 'ChatGPT Image 09_51_01 27 thg 6, 2026.png')" class="bg-luna-500 hover:bg-luna-600 text-white px-3.5 py-2 rounded-full text-xs font-bold transition-all flex items-center space-x-1">
+                                <i class="fa-solid fa-plus text-[10px]"></i><span>Thêm giỏ</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bánh Khô 7: Bánh Ngói Hạnh Nhân -->
+                <div class="bake-card bg-white rounded-2xl overflow-hidden border border-luna-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between" data-type="all-kho">
+                    <div class="relative">
+                        <img src="ChatGPT Image 10_28_30 27 thg 6, 2026.png" 
+                             alt="Bánh Ngói Hạnh Nhân" 
+                             onerror="this.src='https://placehold.co/600x400/f3eae0/704337?text=Banh+Ngoi+Hanh+Nhan'"
+                             class="w-full h-48 object-cover">
+                        <span class="absolute top-3 right-3 bg-luna-gold text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-widest shadow">Premium Crisp</span>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="font-serif text-lg font-bold text-luna-700">🌰 Bánh Ngói Hạnh Nhân</h3>
+                            <p class="text-xs text-gray-500 leading-relaxed">
+                                Bánh mỏng giòn, phủ hạnh nhân lát nguyên miếng, thơm bơ và béo bùi tự nhiên. Thích hợp thưởng thức cùng trà hoặc cà phê.
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 mt-4 border-t border-luna-50">
+                            <div>
+                                <span class="text-xs text-gray-400 block font-medium">Giá mẻ thủ công</span>
+                                <span class="text-luna-500 font-bold text-base"><span class="price-val" data-prod="Bánh Ngói Hạnh Nhân (Túi)">110,000</span>đ <span class="text-xs font-normal text-gray-500">/túi</span></span>
+                            </div>
+                            <button onclick="addProdToCartByElement('Bánh Ngói Hạnh Nhân (Túi)', 'ChatGPT Image 10_28_30 27 thg 6, 2026.png')" class="bg-luna-500 hover:bg-luna-600 text-white px-3.5 py-2 rounded-full text-xs font-bold transition-all flex items-center space-x-1">
+                                <i class="fa-solid fa-plus text-[10px]"></i><span>Thêm giỏ</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bánh Tươi 1: Bánh Su Kem -->
+                <div class="bake-card bg-white rounded-2xl overflow-hidden border border-luna-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between" data-type="all-tuoi">
+                    <div class="relative">
+                        <img src="z7936387852468_7971e590bbdcd3b944f049491c8664d9.jpg" 
+                             alt="Bánh Su Kem Tươi" 
+                             onerror="this.src='https://placehold.co/600x400/f3eae0/704337?text=Su+Kem+Tuoi'"
+                             class="w-full h-48 object-cover">
+                        <span class="absolute top-3 left-3 bg-amber-600 text-white text-[9px] font-bold px-2 py-1 rounded-md uppercase tracking-wider">Hải Phòng</span>
+                        <span class="absolute top-3 right-3 bg-luna-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-widest shadow">Hot Today</span>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="font-serif text-lg font-bold text-luna-700">🧁 Hộp Mix Su Kem Tươi</h3>
+                            <p class="text-xs text-gray-500 leading-relaxed">
+                                Vỏ su mềm thơm nhẹ nướng giòn rụm trong ngày, kết hợp nhân kem custard sữa tươi béo mịn lành mát, điểm xuyết hoa quả vàng mọng trang trí ngọt lành.
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 mt-4 border-t border-luna-50">
+                            <div>
+                                <span class="text-xs text-gray-400 block font-medium">Bắt đầu từ</span>
+                                <span class="text-luna-500 font-bold text-base"><span class="price-val" data-prod="Hộp Mix Su Kem Tươi (Cơ bản)">45,000</span>đ <span class="text-xs font-normal text-gray-500">/hộp</span></span>
+                            </div>
+                            <button onclick="addProdToCartByElement('Hộp Mix Su Kem Tươi (Cơ bản)', 'z7936387852468_7971e590bbdcd3b944f049491c8664d9.jpg')" class="bg-luna-500 hover:bg-luna-600 text-white px-3.5 py-2 rounded-full text-xs font-bold transition-all flex items-center space-x-1">
+                                <i class="fa-solid fa-plus text-[10px]"></i><span>Thêm giỏ</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bánh Tươi 2: Bông Lan Trứng Muối -->
+                <div class="bake-card bg-white rounded-2xl overflow-hidden border border-luna-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between" data-type="all-tuoi">
+                    <div class="relative">
+                        <img src="z7936444382829_4aea2017b8c46ef0386479a275d22700.jpg" 
+                             alt="Bông Lan Trứng Muối" 
+                             onerror="this.src='https://placehold.co/600x400/f3eae0/704337?text=Bong+Lan+Trung+Muoi'"
+                             class="w-full h-48 object-cover">
+                        <span class="absolute top-3 left-3 bg-amber-600 text-white text-[9px] font-bold px-2 py-1 rounded-md uppercase tracking-wider">Đặt trước 24 giờ</span>
+                        <span class="absolute top-3 right-3 bg-luna-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-widest shadow">Hải Phòng</span>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="font-serif text-lg font-bold text-luna-700">🎂 Bông Lan Trứng Muối</h3>
+                            <p class="text-xs text-gray-500 leading-relaxed mb-2">
+                                Cốt bánh bông lan chiffon siêu xốp mịn, đẫm sốt trứng muối hoàng kim thơm ngậy kết hợp phô mai tan chảy và dồi dào chà bông chất lượng cao.
+                            </p>
+                            <div class="bg-luna-50 p-2.5 rounded-lg space-y-1 text-[11px] text-gray-600">
+                                <p><strong class="text-luna-600">Phối Topping:</strong> Sốt bơ trứng • Trứng muối • Chà bông hảo hạng • Viên Phô mai béo ngậy • Khô bò xé sợi cực cuốn.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 mt-4 border-t border-luna-50">
+                            <div>
+                                <span class="text-xs text-gray-400 block font-medium">Bắt đầu từ</span>
+                                <span class="text-luna-500 font-bold text-base"><span class="price-val" data-prod="Bông Lan Trứng Muối 14cm (Cơ bản)">140,000</span>đ <span class="text-xs font-normal text-gray-500">/chiếc 14cm</span></span>
+                            </div>
+                            <button onclick="addProdToCartByElement('Bông Lan Trứng Muối 14cm (Cơ bản)', 'z7936444382829_4aea2017b8c46ef0386479a275d22700.jpg')" class="bg-luna-500 hover:bg-luna-600 text-white px-3.5 py-2 rounded-full text-xs font-bold transition-all flex items-center space-x-1">
+                                <i class="fa-solid fa-plus text-[10px]"></i><span>Đặt trước</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bánh Tươi 3: Tart Hoa Quả -->
+                <div class="bake-card bg-white rounded-2xl overflow-hidden border border-luna-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between" data-type="all-tuoi">
+                    <div class="relative">
+                        <img src="z7936420294185_5a01edc7e2d2dd6a7e3e1fb9b9a2da42.jpg" 
+                             alt="Tart Hoa Quả Tươi" 
+                             onerror="this.src='https://placehold.co/600x400/f3eae0/704337?text=Tart+Hoa+Qua'"
+                             class="w-full h-48 object-cover">
+                        <span class="absolute top-3 left-3 bg-amber-600 text-white text-[9px] font-bold px-2 py-1 rounded-md uppercase tracking-wider">Đặt trước 1 ngày</span>
+                        <span class="absolute top-3 right-3 bg-luna-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-widest shadow">Hải Phòng</span>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="font-serif text-lg font-bold text-luna-700">🍓 Tart Hoa Quả Cao Cấp</h3>
+                            <p class="text-xs text-gray-500 leading-relaxed mb-2">
+                                Đế tart bơ giòn rụm xếp lớp chuẩn kỹ thuật bánh Pháp kết hợp lớp kem mịn ngậy béo nhẹ và trái cây tươi thu hoạch nguyên mùa.
+                            </p>
+                            <div class="bg-luna-50 p-2.5 rounded-lg space-y-1 text-[11px] text-gray-600">
+                                <p><strong class="text-luna-600">Trái cây:</strong> Dâu tây • Kiwi • Việt quất • Nho • Xoài • Cam • Đào • Thanh long • Phúc bồn tử.</p>
+                                <p class="mt-1"><strong class="text-luna-600">Cỡ bánh:</strong> Tart mini xinh xắn, Tart tròn 16 cm | 18 cm | 20 cm hoặc khuôn Tart trái tim ấm áp lãng mạn.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 mt-4 border-t border-luna-50">
+                            <div>
+                                <span class="text-xs text-gray-400 block font-medium">Bắt đầu từ</span>
+                                <span class="text-luna-500 font-bold text-base"><span class="price-val" data-prod="Tart Hoa Quả Mini (Set 2)">70,000</span>đ <span class="text-xs font-normal text-gray-500">/set mini</span></span>
+                            </div>
+                            <button onclick="addProdToCartByElement('Tart Hoa Quả Mini (Set 2)', 'z7936420294185_5a01edc7e2d2dd6a7e3e1fb9b9a2da42.jpg')" class="bg-luna-500 hover:bg-luna-600 text-white px-3.5 py-2 rounded-full text-xs font-bold transition-all flex items-center space-x-1">
+                                <i class="fa-solid fa-plus text-[10px]"></i><span>Đặt trước</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bánh Tươi 4: Bánh Trung Thu Đài Loan Nhân Mochi -->
+                <div class="bake-card bg-white rounded-2xl overflow-hidden border border-luna-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between" data-type="all-tuoi">
+                    <div class="relative">
+                        <img src="ChatGPT Image 10_16_57 27 thg 6, 2026.png" 
+                             alt="Bánh Trung Thu Đài Loan Nhân Mochi" 
+                             onerror="this.src='https://placehold.co/600x400/f3eae0/704337?text=Banh+Trung+Thu+Mochi'"
+                             class="w-full h-48 object-cover">
+                        <span class="absolute top-3 left-3 bg-amber-600 text-white text-[9px] font-bold px-2 py-1 rounded-md uppercase tracking-wider">Đặt trước 24 giờ</span>
+                        <span class="absolute top-3 right-3 bg-luna-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-widest shadow">Hải Phòng</span>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div class="space-y-2">
+                            <h3 class="font-serif text-lg font-bold text-luna-700">🥮 Bánh Trung Thu Đài Loan Mochi</h3>
+                            <p class="text-xs text-gray-500 leading-relaxed mb-2">
+                                Lớp vỏ mềm thơm, nhân sên đậm đà kết hợp mochi dẻo dai, mang đến hương vị hài hòa và hấp dẫn trong từng miếng bánh.
+                            </p>
+                            <div class="bg-luna-50 p-2.5 rounded-lg space-y-1 text-[11px] text-gray-600">
+                                <p><strong class="text-luna-600">Vị nhân mochi:</strong> Trà xanh Mochi, Đậu đỏ Mochi, Khoai môn Mochi, Sen nhuyễn Mochi, Trứng muối chảy Mochi.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 mt-4 border-t border-luna-50">
+                            <div>
+                                <span class="text-xs text-gray-400 block font-medium">Giá mẻ thủ công</span>
+                                <span class="text-luna-500 font-bold text-base"><span class="price-val" data-prod="Bánh Trung Thu Đài Loan Nhân Mochi (Chiếc)">65,000</span>đ <span class="text-xs font-normal text-gray-500">/chiếc</span></span>
+                            </div>
+                            <button onclick="addProdToCartByElement('Bánh Trung Thu Đài Loan Nhân Mochi (Chiếc)', 'ChatGPT Image 10_16_57 27 thg 6, 2026.png')" class="bg-luna-500 hover:bg-luna-600 text-white px-3.5 py-2 rounded-full text-xs font-bold transition-all flex items-center space-x-1">
+                                <i class="fa-solid fa-plus text-[10px]"></i><span>Đặt trước</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="builder" class="py-16 bg-luna-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
+                <span class="text-luna-600 text-xs font-bold uppercase tracking-widest block">Tính năng độc quyền</span>
+                <h2 class="font-serif text-3xl sm:text-4xl text-luna-800">Tự Phối Bông Lan Trứng Muối</h2>
+                <div class="w-12 h-[3px] bg-luna-500 mx-auto rounded-full"></div>
+                <p class="text-xs sm:text-sm text-gray-500">
+                    Bấm chọn kích thước và gắp đầy ắp Topping bạn thích. Mặt bánh mô phỏng 2D bên trái sẽ tự động cập nhật Topping rơi xuống tương ứng theo thời gian thực!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                <!-- Bên trái: Canvas 2D mô phỏng bánh -->
+                <div class="lg:col-span-5 bg-white p-6 rounded-3xl border border-luna-200 shadow-md flex flex-col items-center justify-between relative min-h-[400px]">
+                    <div class="absolute top-4 left-4 bg-luna-600 text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow">Mô phỏng 2D bánh</div>
+                    
+                    <div class="flex-grow flex items-center justify-center w-full relative h-72">
+                        <!-- Thớt gỗ -->
+                        <div class="w-64 h-64 bg-amber-100 rounded-full border-4 border-amber-200 shadow-xl flex items-center justify-center transition-transform duration-500" id="board-wood">
+                            <!-- Lớp bánh sponge -->
+                            <div class="w-48 h-48 bg-amber-400 rounded-full shadow-lg border-2 border-amber-500 flex items-center justify-center relative transition-all duration-300" id="cake-sponge">
+                                <!-- Sốt kem phủ lên mặt -->
+                                <div class="absolute inset-2 bg-yellow-100 rounded-full border border-yellow-200/50 shadow-inner flex items-center justify-center transition-all duration-300" id="cake-sauce">
+                                    <!-- Container Topping rơi xuống bánh -->
+                                    <div class="absolute inset-0 rounded-full overflow-hidden relative" id="topping-container">
+                                        <!-- Toppings sẽ được vẽ/thêm vào đây bằng JS -->
+                                    </div>
+                                    <div class="z-10 text-center pointer-events-none">
+                                        <span class="text-[10px] text-amber-800/60 font-bold uppercase tracking-widest" id="cake-size-label">Cỡ Mini</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full text-center pt-4 border-t border-luna-50">
+                        <span class="text-xs text-gray-400 block font-medium">Tổng giá bánh phối riêng</span>
+                        <span class="text-2xl font-serif font-bold text-luna-600" id="builder-total-price">50,000đ</span>
+                    </div>
+                </div>
+
+                <!-- Bên phải: Bảng điều khiển chọn topping -->
+                <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl border border-luna-200 shadow-md flex flex-col justify-between">
+                    <div class="space-y-6">
+                        <!-- Bước 1: Chọn size -->
+                        <div class="space-y-3">
+                            <h4 class="font-serif text-base font-bold text-luna-800 flex items-center space-x-2">
+                                <span class="w-6 h-6 rounded-full bg-luna-100 text-luna-600 flex items-center justify-center text-xs font-bold">1</span>
+                                <span>Kích Thước Cốt Bánh Chiffon</span>
+                            </h4>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                <label class="relative flex flex-col p-3 border-2 border-luna-600 bg-luna-50/50 rounded-2xl cursor-pointer hover:bg-luna-50 transition-all text-center group" onclick="setBuilderSize('mini', 50000)">
+                                    <input type="radio" name="cake_size" value="mini" checked class="sr-only">
+                                    <span class="text-xs font-bold text-luna-800">Cỡ Mini</span>
+                                    <span class="text-[10px] text-gray-500 mt-0.5">Tiết kiệm</span>
+                                    <span class="text-xs font-bold text-luna-600 mt-2 block" id="lbl-size-mini">50,000đ</span>
+                                </label>
+                                <label class="relative flex flex-col p-3 border-2 border-gray-150 rounded-2xl cursor-pointer hover:bg-luna-50 transition-all text-center group" onclick="setBuilderSize('14cm', 140000)">
+                                    <input type="radio" name="cake_size" value="14cm" class="sr-only">
+                                    <span class="text-xs font-bold text-luna-800">Cỡ 14cm</span>
+                                    <span class="text-[10px] text-gray-500 mt-0.5">1-2 người</span>
+                                    <span class="text-xs font-bold text-luna-600 mt-2 block" id="lbl-size-14cm">140,000đ</span>
+                                </label>
+                                <label class="relative flex flex-col p-3 border-2 border-gray-150 rounded-2xl cursor-pointer hover:bg-luna-50 transition-all text-center group" onclick="setBuilderSize('16cm', 180000)">
+                                    <input type="radio" name="cake_size" value="16cm" class="sr-only">
+                                    <span class="text-xs font-bold text-luna-800">Cỡ 16cm</span>
+                                    <span class="text-[10px] text-gray-500 mt-0.5">3-4 người</span>
+                                    <span class="text-xs font-bold text-luna-600 mt-2 block" id="lbl-size-16cm">180,000đ</span>
+                                </label>
+                                <label class="relative flex flex-col p-3 border-2 border-gray-150 rounded-2xl cursor-pointer hover:bg-luna-50 transition-all text-center group" onclick="setBuilderSize('20cm', 240000)">
+                                    <input type="radio" name="cake_size" value="20cm" class="sr-only">
+                                    <span class="text-xs font-bold text-luna-800">Cỡ 20cm</span>
+                                    <span class="text-[10px] text-gray-500 mt-0.5">Gia đình</span>
+                                    <span class="text-xs font-bold text-luna-600 mt-2 block" id="lbl-size-20cm">240,000đ</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Bước 2: Chọn toppings -->
+                        <div class="space-y-3">
+                            <h4 class="font-serif text-base font-bold text-luna-800 flex items-center space-x-2">
+                                <span class="w-6 h-6 rounded-full bg-luna-100 text-luna-600 flex items-center justify-center text-xs font-bold">2</span>
+                                <span>Thêm Đầy Đặn Toppings</span>
+                            </h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <!-- Topping 1 -->
+                                <label class="flex items-center justify-between p-3.5 border border-luna-100 rounded-2xl cursor-pointer hover:bg-luna-50 transition-all">
+                                    <div class="flex items-center space-x-3">
+                                        <input type="checkbox" value="egg" onchange="toggleBuilderTopping('egg', 15000, this)" class="w-4.5 h-4.5 text-luna-600 border-luna-300 rounded focus:ring-luna-500">
+                                        <div class="text-left">
+                                            <span class="text-xs font-bold text-luna-800 block">🟡 Trứng muối dẻo bùi</span>
+                                            <span class="text-[9px] text-gray-400 block">Trứng muối chín lòng đào</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-bold text-luna-600" id="lbl-top-egg">+15,000đ</span>
+                                </label>
+                                <!-- Topping 2 -->
+                                <label class="flex items-center justify-between p-3.5 border border-luna-100 rounded-2xl cursor-pointer hover:bg-luna-50 transition-all">
+                                    <div class="flex items-center space-x-3">
+                                        <input type="checkbox" value="pork" onchange="toggleBuilderTopping('pork', 15000, this)" class="w-4.5 h-4.5 text-luna-600 border-luna-300 rounded focus:ring-luna-500">
+                                        <div class="text-left">
+                                            <span class="text-xs font-bold text-luna-800 block">🟤 Chà bông gà xé sợi</span>
+                                            <span class="text-[9px] text-gray-400 block">Chà bông gà nhà làm, ít ngọt</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-bold text-luna-600" id="lbl-top-pork">+15,000đ</span>
+                                </label>
+                                <!-- Topping 3 -->
+                                <label class="flex items-center justify-between p-3.5 border border-luna-100 rounded-2xl cursor-pointer hover:bg-luna-50 transition-all">
+                                    <div class="flex items-center space-x-3">
+                                        <input type="checkbox" value="cheese" onchange="toggleBuilderTopping('cheese', 20000, this)" class="w-4.5 h-4.5 text-luna-600 border-luna-300 rounded focus:ring-luna-500">
+                                        <div class="text-left">
+                                            <span class="text-xs font-bold text-luna-800 block">🧀 Viên Phô mai béo ngậy</span>
+                                            <span class="text-[9px] text-gray-400 block">Phô mai viên vuông, béo ngậy</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-bold text-luna-600" id="lbl-top-cheese">+20,000đ</span>
+                                </label>
+                                <!-- Topping 4 -->
+                                <label class="flex items-center justify-between p-3.5 border border-luna-100 rounded-2xl cursor-pointer hover:bg-luna-50 transition-all">
+                                    <div class="flex items-center space-x-3">
+                                        <input type="checkbox" value="beef" onchange="toggleBuilderTopping('beef', 20000, this)" class="w-4.5 h-4.5 text-luna-600 border-luna-300 rounded focus:ring-luna-500">
+                                        <div class="text-left">
+                                            <span class="text-xs font-bold text-luna-800 block">🥩 Khô bò cay xé nhỏ</span>
+                                            <span class="text-[9px] text-gray-400 block">Khô bò tẩm vị cay cay ngọt mặn</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-bold text-luna-600" id="lbl-top-beef">+20,000đ</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="addBuiltCakeToBasket()" class="w-full mt-8 bg-luna-600 hover:bg-luna-700 text-white font-bold text-sm py-3.5 rounded-full shadow-lg transition-all flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-plus text-xs"></i><span>Thêm Bánh Phối Riêng Vào Giỏ Hàng</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 bg-white border-t border-luna-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="relative">
+                <div class="absolute -inset-2 bg-luna-100 rounded-3xl transform rotate-2"></div>
+                <img src="z7936444382829_4aea2017b8c46ef0386479a275d22700.jpg" 
+                     alt="Gian bếp nướng bánh Luna" 
+                     onerror="this.src='https://placehold.co/600x450/f3eae0/704337?text=Bep+Luna'"
+                     class="w-full rounded-2xl shadow-lg relative z-10 aspect-[4/3] object-cover">
+            </div>
+            <div class="space-y-6">
+                <span class="text-luna-600 text-xs font-bold uppercase tracking-widest block">Thương hiệu bánh mộc</span>
+                <h3 class="font-serif text-3xl sm:text-4xl text-luna-800 leading-tight">Mỗi mẻ bánh nướng từ cả trái tim</h3>
+                <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                    Luna Bakery xuất phát từ niềm đam mê đem đến những mẻ bánh nướng chuẩn mộc, chất lượng cao dành cho người dân Hải Phòng. Chúng tôi tuyển chọn kỹ càng từng miếng bơ Pháp thơm ngậy, lòng đỏ trứng muối bùi dẻo, trái cây tươi tự nhiên theo mùa và bột mì hữu cơ cao cấp nhất.
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex items-start space-x-2.5">
+                        <i class="fa-solid fa-check text-green-600 mt-1"></i>
+                        <div>
+                            <span class="text-xs font-bold text-luna-800 block">Sạch 100%</span>
+                            <span class="text-[10px] text-gray-500">Nói không với hương liệu tổng hợp</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-2.5">
+                        <i class="fa-solid fa-check text-green-600 mt-1"></i>
+                        <div>
+                            <span class="text-xs font-bold text-luna-800 block">Đặt bánh dễ dàng</span>
+                            <span class="text-[10px] text-gray-500">Phối Topping, giao tận ngõ HP</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-luna-50 p-4 rounded-2xl border border-luna-150 flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-full bg-luna-100 flex items-center justify-center text-luna-700 font-serif text-lg font-bold">L</div>
+                    <div>
+                        <span class="text-[10px] text-gray-400 font-bold block uppercase tracking-wider">Chủ tiệm sáng lập</span>
+                        <span class="text-sm font-bold text-luna-800">LUNA BAKERY - Hải Phòng</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="checkout" class="py-16 bg-gradient-to-b from-white to-luna-50 border-t border-luna-150">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center space-y-2 mb-10">
+                <span class="text-luna-600 text-xs font-bold uppercase tracking-widest block">Xác nhận thanh toán</span>
+                <h3 class="font-serif text-3xl text-luna-800">Gửi Yêu Cầu Đặt Bánh</h3>
+                <p class="text-xs text-gray-500 max-w-md mx-auto">
+                    Hãy kiểm tra kỹ giỏ hàng của bạn, điền đầy đủ địa chỉ giao hàng và thông tin liên lạc để chủ tiệm chuẩn bị mẻ bánh ngon nhất gửi đến bạn nhé.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 sm:p-10 rounded-3xl border border-luna-200 shadow-xl">
+                <form id="order-form" onsubmit="submitFormOrder(event)" class="space-y-6">
+                    <!-- Form 2 cột -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Tên -->
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-luna-800 flex items-center space-x-1">
+                                <i class="fa-solid fa-user text-[10px] text-luna-500"></i>
+                                <span>Họ tên của bạn *</span>
+                            </label>
+                            <input type="text" id="cust-name" required placeholder="Nhập họ và tên..." class="w-full text-xs px-4 py-3 bg-luna-50 border border-luna-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-luna-500 focus:outline-none transition-all">
+                        </div>
+                        <!-- SĐT -->
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-luna-800 flex items-center space-x-1">
+                                <i class="fa-solid fa-phone text-[10px] text-luna-500"></i>
+                                <span>Số điện thoại *</span>
+                            </label>
+                            <input type="tel" id="cust-phone" required placeholder="Nhập số điện thoại..." class="w-full text-xs px-4 py-3 bg-luna-50 border border-luna-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-luna-500 focus:outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Phương thức nhận bánh -->
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-luna-800 flex items-center space-x-1">
+                                <i class="fa-solid fa-truck text-[10px] text-luna-500"></i>
+                                <span>Cách thức nhận bánh *</span>
+                            </label>
+                            <select id="cust-delivery-method" onchange="toggleAddressField(this.value)" class="w-full text-xs px-4 py-3 bg-luna-50 border border-luna-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-luna-500 focus:outline-none transition-all">
+                                <option value="delivery" selected>Giao hàng tận nơi (Ship tận cửa)</option>
+                                <option value="pickup">Đến lấy trực tiếp tại cửa hàng Đằng Hải</option>
+                            </select>
+                        </div>
+                        <!-- Ngày giờ lấy -->
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-luna-800 flex items-center space-x-1">
+                                <i class="fa-solid fa-calendar-days text-[10px] text-luna-500"></i>
+                                <span>Ngày & Giờ muốn nhận bánh *</span>
+                            </label>
+                            <input type="datetime-local" id="cust-delivery-time" required class="w-full text-xs px-4 py-3 bg-luna-50 border border-luna-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-luna-500 focus:outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <!-- Ô địa chỉ khách hàng (Tự động ẩn hiện khi đổi Delivery Method) -->
+                    <div class="space-y-2 transition-all duration-300" id="address-field-container">
+                        <label class="text-xs font-bold text-luna-800 flex items-center space-x-1">
+                            <i class="fa-solid fa-location-dot text-[10px] text-luna-500"></i>
+                            <span>Địa chỉ nhận bánh (Số nhà, Tên đường, Quận/Huyện) *</span>
+                        </label>
+                        <input type="text" id="cust-address" required placeholder="Nhập địa chỉ giao hàng chi tiết..." class="w-full text-xs px-4 py-3 bg-luna-50 border border-luna-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-luna-500 focus:outline-none transition-all">
+                    </div>
+
+                    <!-- Ghi chú, lời viết lên bánh -->
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-luna-800 flex items-center space-x-1">
+                            <i class="fa-solid fa-pen-fancy text-[10px] text-luna-500"></i>
+                            <span>Lời nhắn hoặc viết chữ lên bánh (Nếu có)</span>
+                        </label>
+                        <textarea id="cust-message" rows="2" placeholder="Ví dụ: Ghi chữ 'Chúc mừng sinh nhật Luna tròn 18 tuổi'..." class="w-full text-xs px-4 py-3 bg-luna-50 border border-luna-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-luna-500 focus:outline-none transition-all"></textarea>
+                    </div>
+
+                    <!-- Upload File Đính Kèm (Ảnh mẫu bánh / Hóa đơn) -->
+                    <div class="space-y-3 bg-luna-50 p-4 rounded-2xl border border-luna-200">
+                        <div class="flex items-center justify-between">
+                            <label class="text-xs font-bold text-luna-800 flex items-center space-x-1">
+                                <i class="fa-solid fa-image text-[10px] text-luna-500"></i>
+                                <span>Đính kèm ảnh mẫu bánh hoặc Hóa đơn chuyển khoản trước</span>
+                            </label>
+                            <span class="text-[9px] text-gray-400 font-bold uppercase tracking-wider bg-white px-2 py-0.5 rounded border border-luna-150">Hỗ trợ .jpg, .png</span>
+                        </div>
+                        <p class="text-[10px] text-gray-400 leading-relaxed">
+                            Khách hàng có thể đính kèm ảnh mẫu bánh ngọt mong muốn hoặc tải lên ảnh chụp màn hình hóa đơn thanh toán sau khi đặt.
+                        </p>
+                        <div class="flex items-center space-x-4">
+                            <label class="flex items-center space-x-2 bg-white hover:bg-luna-100 text-luna-800 px-4 py-2.5 rounded-xl border border-luna-200 cursor-pointer shadow-xs text-xs font-semibold transition-all">
+                                <i class="fa-solid fa-cloud-arrow-up text-luna-500 text-sm"></i>
+                                <span>Chọn tệp ảnh</span>
+                                <input type="file" id="cust-attachment" accept="image/*" class="sr-only" onchange="processAndCompressImage(this)">
+                            </label>
+                            <div class="flex-grow flex items-center space-x-2" id="attachment-preview-box" style="display: none;">
+                                <img id="attachment-preview" class="w-12 h-12 object-cover rounded-lg border border-luna-200 shadow-inner">
+                                <div class="text-left">
+                                    <span class="text-[10px] font-bold text-luna-700 block">Đã nhận ảnh mẫu bánh</span>
+                                    <button type="button" onclick="removeAttachedImage()" class="text-[10px] text-red-500 font-bold hover:underline">Hủy đính kèm</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ghi chú tóm tắt bánh trong Giỏ (Tự động ghi đè bởi giỏ hàng) -->
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-luna-800 flex items-center space-x-1">
+                            <i class="fa-solid fa-list-check text-[10px] text-luna-500"></i>
+                            <span>Chi tiết mẻ bánh đã chọn đặt mua *</span>
+                        </label>
+                        <textarea id="cust-order-summary" required readonly rows="3" class="w-full text-xs px-4 py-3 bg-gray-100/50 text-gray-500 border border-luna-200 rounded-xl cursor-not-allowed font-mono"></textarea>
+                    </div>
+
+                    <!-- Tổng thanh toán & Nút gửi -->
+                    <div class="pt-4 border-t border-luna-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="text-center sm:text-left">
+                            <span class="text-xs text-gray-400 block font-medium">Tổng thanh toán đơn bánh</span>
+                            <span class="text-2xl font-serif font-bold text-luna-600" id="form-total-price">0đ</span>
+                        </div>
+                        <button type="submit" class="w-full sm:w-auto bg-luna-600 hover:bg-luna-700 text-white font-bold text-sm px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-paper-plane text-xs"></i><span>Gửi Đơn Đặt Bánh & Thanh Toán</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chân trang -->
+    <footer class="bg-luna-900 text-luna-100 pt-16 pb-8 border-t border-luna-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <div class="space-y-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-luna-600 rounded-full flex items-center justify-center font-serif text-lg font-bold text-white shadow-md">L</div>
+                    <span class="font-serif text-lg font-bold tracking-wide text-white">Luna Bakery</span>
+                </div>
+                <p class="text-xs text-luna-300 leading-relaxed">
+                    Từng hương vị nướng từ lò gạch cũ thủ công, cam kết sử dụng bơ nguyên chất Pháp và trái cây hữu cơ trong từng mẻ bánh mỗi ngày.
+                </p>
+            </div>
+            
+            <div class="space-y-4">
+                <h4 class="font-serif text-sm font-bold tracking-wider text-white uppercase">Menu cửa hàng</h4>
+                <ul class="space-y-2 text-xs text-luna-300">
+                    <li><a href="#menu" class="hover:text-luna-200 transition-colors">📦 Bánh Khô (Ship toàn quốc)</a></li>
+                    <li><a href="#menu" class="hover:text-luna-200 transition-colors">🍰 Bánh Tươi (Hải Phòng)</a></li>
+                    <li><a href="#builder" class="hover:text-luna-200 transition-colors">🎂 Bông Lan Trứng Muối Phối Topping</a></li>
+                    <li><a href="#menu" class="hover:text-luna-200 transition-colors">🥮 Bánh Trung Thu Mochi</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="font-serif text-sm font-bold tracking-wider text-white uppercase">Giờ mở cửa</h4>
+                <ul class="space-y-2 text-xs text-luna-300">
+                    <li id="footer-working-hours">Thứ Hai – Chủ Nhật: 07:30 – 21:30</li>
+                    <li class="text-luna-400 font-bold">Đặt bánh trước 1-2 ngày để tiệm nướng bánh ngon nhất</li>
+                </ul>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="font-serif text-sm font-bold tracking-wider text-white uppercase">Thông tin liên lạc</h4>
+                <ul class="space-y-2.5 text-xs text-luna-300">
+                    <li class="flex items-start space-x-2">
+                        <i class="fa-solid fa-location-dot mt-0.5 text-luna-400"></i>
+                        <span id="footer-address">2/2/2/17 Đằng Hải, Phường Hải An, Thành phố Hải Phòng</span>
+                    </li>
+                    <li class="flex items-center space-x-2">
+                        <i class="fa-solid fa-phone text-luna-400"></i>
+                        <span id="footer-hotline-2">0904123456</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-8 border-t border-luna-800 flex flex-col sm:flex-row items-center justify-between text-[11px] text-luna-400">
+            <span>&copy; 2026 Luna Bakery. Tất cả sản phẩm được chuẩn bị thủ công an lành sạch sẽ.</span>
+            <div class="flex items-center space-x-1 mt-4 sm:mt-0">
+                <i class="fa-solid fa-lock text-[9px] opacity-40"></i>
+                <button onclick="openAdminPanel()" class="hover:text-luna-200 transition-colors underline font-medium">Quản trị</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Slide Giỏ hàng Mini (Mini Basket Drawer) -->
+    <div id="basket-overlay" onclick="toggleBasket()" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <div id="basket-drawer" class="fixed top-0 right-0 bottom-0 z-50 w-full sm:max-w-md bg-white border-l border-luna-150 shadow-2xl flex flex-col justify-between basket-drawer transform translate-x-full">
+        <!-- Drawer Header -->
+        <div class="p-4 border-b border-luna-100 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-basket-shopping text-luna-600 text-lg"></i>
+                <h3 class="font-serif text-lg font-bold text-luna-800">Giỏ Hàng Mini</h3>
+                <span id="drawer-item-count" class="bg-luna-100 text-luna-700 text-[10px] font-bold px-2 py-0.5 rounded-full">0 món</span>
+            </div>
+            <button onclick="toggleBasket()" class="p-2 text-gray-400 hover:text-gray-600 rounded-full focus:outline-none">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Drawer Body (Danh sách cuộn) -->
+        <div class="flex-grow p-4 overflow-y-auto space-y-4" id="drawer-items-list">
+            <!-- Items sẽ hiển thị ở đây bằng JS -->
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="p-4 border-t border-luna-100 space-y-4 bg-luna-50">
+            <div class="flex items-center justify-between text-sm">
+                <span class="text-gray-500 font-medium">Tạm tính đơn bánh</span>
+                <span class="text-lg font-bold text-luna-700" id="drawer-total-price">0đ</span>
+            </div>
+            <p class="text-[10px] text-gray-400 leading-relaxed">
+                Nhấp nút Đặt bánh bên dưới, hệ thống sẽ tự động tổng hợp danh sách bánh vào Form đặt bánh ngoài trang chủ.
+            </p>
+            <button onclick="checkoutAndScroll()" class="w-full bg-luna-600 hover:bg-luna-700 text-white font-bold text-sm py-3.5 rounded-full shadow-md transition-all flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-circle-check text-xs"></i><span>Tiến Hành Đặt Hàng & Thanh Toán</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Popup đăng nhập Admin -->
+    <div id="login-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white rounded-3xl border border-luna-200 shadow-2xl p-6 sm:p-8 max-w-sm w-full space-y-6 transform scale-95 transition-transform duration-300">
+            <div class="text-center space-y-2">
+                <div class="w-12 h-12 bg-luna-100 text-luna-600 rounded-full flex items-center justify-center mx-auto text-lg shadow-sm">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h4 class="font-serif text-lg font-bold text-luna-800">Xác Thực Quản Trị Viên</h4>
+                <p class="text-[10px] text-gray-400">Vui lòng điền mã bảo vệ để truy cập bảng điều khiển.</p>
+            </div>
+            <div class="space-y-4">
+                <input type="password" id="admin-pass" placeholder="Nhập mật khẩu..." class="w-full text-xs px-4 py-3 bg-luna-50 border border-luna-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-luna-500 focus:outline-none transition-all text-center">
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="closeAdminLogin()" class="bg-gray-100 hover:bg-gray-200 text-gray-600 font-semibold text-xs py-3 rounded-xl transition-all">Quay lại</button>
+                    <button onclick="verifyAdminLogin()" class="bg-luna-600 hover:bg-luna-700 text-white font-semibold text-xs py-3 rounded-xl shadow transition-all">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bảng Quản Trị Hệ Thống Luna Bakery -->
+    <div id="admin-panel" class="fixed inset-0 z-50 bg-luna-50 overflow-y-auto hidden">
+        <header class="bg-white border-b border-luna-150 py-4 px-6 sticky top-0 z-30 shadow-xs">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 bg-luna-600 rounded-full flex items-center justify-center font-serif text-base font-bold text-white">A</div>
+                    <div>
+                        <h3 class="font-serif text-base font-bold text-luna-800 leading-none">Bảng Điều Khiển Hệ Thống</h3>
+                        <span class="text-[9px] text-luna-500 font-semibold block uppercase mt-1">Trang Quản Trị Landing Page</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="downloadUpgradedSelfCleanHtmlFile()" class="bg-amber-600 hover:bg-amber-700 text-white text-[11px] font-bold px-4 py-2 rounded-lg shadow-sm transition-all flex items-center space-x-1.5">
+                        <i class="fa-solid fa-cloud-arrow-down"></i><span>Xuất bản tệp HTML sạch</span>
+                    </button>
+                    <button onclick="closeAdminPanel()" class="bg-gray-150 hover:bg-gray-200 text-gray-700 text-[11px] font-bold px-4 py-2 rounded-lg transition-all">
+                        Đăng xuất & Đóng
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+            <!-- Tabs Menu -->
+            <div class="flex border-b border-luna-200 mb-8 space-x-4">
+                <button onclick="switchAdminTab('orders')" id="tab-btn-orders" class="admin-tab-btn active border-b-2 border-luna-600 text-luna-800 font-serif text-sm font-bold pb-2.5 px-2 transition-all">
+                    🗂️ Đơn Bánh Mới (<span id="admin-orders-count">0</span>)
+                </button>
+                <button onclick="switchAdminTab('prices')" id="tab-btn-prices" class="admin-tab-btn text-gray-400 font-serif text-sm pb-2.5 px-2 transition-all">
+                    💰 Quản Lý Giá Bánh
+                </button>
+                <button onclick="switchAdminTab('store')" id="tab-btn-store" class="admin-tab-btn text-gray-400 font-serif text-sm pb-2.5 px-2 transition-all">
+                    🏠 Thông Tin Tiệm
+                </button>
+            </div>
+
+            <!-- TAB 1: DANH SÁCH ĐƠN BÁNH MỚI (Bản Thẻ Lớn) -->
+            <div id="admin-tab-orders" class="admin-tab-panel block space-y-6">
+                <!-- Bộ lọc & Thống kê -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-luna-150">
+                    <div>
+                        <span class="text-xs text-gray-400 font-bold block uppercase tracking-wider">Danh mục tổng quan</span>
+                        <h4 class="text-lg font-serif font-bold text-luna-800">Quản Lý Toàn Bộ Đơn Đặt Bánh</h4>
+                    </div>
+                    <button onclick="clearAllOrders()" class="bg-red-50 text-red-600 hover:bg-red-100 text-[11px] font-bold px-4 py-2 rounded-lg border border-red-200 transition-all">
+                        Xóa tất cả đơn hàng
+                    </button>
+                </div>
+
+                <!-- Lưới hiển thị danh sách thẻ đơn bánh lớn rộng rãi -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="admin-orders-grid">
+                    <!-- Thẻ đơn hàng render tại đây -->
+                </div>
+            </div>
+
+            <!-- TAB 2: QUẢN LÝ GIÁ BÁNH -->
+            <div id="admin-tab-prices" class="admin-tab-panel hidden bg-white p-6 sm:p-8 rounded-3xl border border-luna-200 shadow-sm space-y-6">
+                <div class="border-b border-luna-100 pb-4">
+                    <h4 class="font-serif text-lg font-bold text-luna-800">Cập Nhật Bảng Giá Mẻ Bánh</h4>
+                    <p class="text-[11px] text-gray-400 mt-1">Thay đổi giá các loại bánh hiển thị ngoài trang chủ. Chỉ nhập số nguyên dương, không nhập thêm chữ hay dấu chấm.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="admin-prices-form-grid">
+                    <!-- JS sẽ sinh toàn bộ các ô nhập giá tự động -->
+                </div>
+                <div class="pt-4 border-t border-luna-100 text-right">
+                    <button onclick="saveAdminPrices()" class="bg-luna-600 hover:bg-luna-700 text-white font-bold text-xs px-6 py-3 rounded-xl shadow transition-all">
+                        Lưu & Áp Dụng Giá Mới
+                    </button>
+                </div>
+            </div>
+
+            <!-- TAB 3: THÔNG TIN TIỆM & HỆ THỐNG LIÊN KẾT -->
+            <div id="admin-tab-store" class="admin-tab-panel hidden bg-white p-6 sm:p-8 rounded-3xl border border-luna-200 shadow-sm space-y-8">
+                <!-- Cấu hình tiệm -->
+                <div class="space-y-6">
+                    <div class="border-b border-luna-100 pb-4">
+                        <h4 class="font-serif text-lg font-bold text-luna-800">Cấu Hình Cơ Bản Tiệm</h4>
+                        <p class="text-[11px] text-gray-400 mt-1">Nhập các số liên lạc thật của tiệm bạn để nhận Zalo và nhận tiền.</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-luna-800">Mật khẩu admin mới</label>
+                            <input type="text" id="admin-cfg-pass" class="w-full text-xs px-4 py-3 bg-luna-50 border border-luna-200 rounded-xl focus:outline-none">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-luna-800">Số điện thoại Hotline</label>
+                            <input type="text" id="admin-cfg-hotline" class="w-full text-xs px-4 py-3 bg-luna-50 border border-luna-200 rounded-xl focus:outline-none">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-luna-800">Địa chỉ tiệm bánh Hải Phòng</label>
+                            <input type="text" id="admin-cfg-address" class="w-full text-xs px-4 py-3 bg-luna-50 border border-luna-200 rounded-xl focus:outline-none">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-luna-800">Khung giờ hoạt động hiển thị</label>
+                            <input type="text" id="admin-cfg-hours" class="w-full text-xs px-4 py-3 bg-luna-50 border border-luna-200 rounded-xl focus:outline-none">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-luna-800">SĐT nhận đơn Zalo (Ví dụ: 0904123456)</label>
+                            <input type="text" id="admin-cfg-zalo" class="w-full text-xs px-4 py-3 bg-luna-50 border border-luna-200 rounded-xl focus:outline-none">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cấu hình tài khoản ngân hàng -->
+                <div class="space-y-6">
+                    <div class="border-b border-luna-100 pb-4">
+                        <h4 class="font-serif text-lg font-bold text-luna-800">Cấu Hình Tài Khoản VietQR</h4>
+                        <p class="text-[11px] text-gray-400 mt-1">Cấu hình thông tin ngân hàng nhận tiền chuyển khoản của khách.</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-luna-800">Tên ngân hàng (Hệ thống VietQR dùng MB Bank)</label>
+                            <input type="text" id="admin-cfg-bankname" class="w-full text-xs px-4 py-3 bg-luna-50 border border-luna-200 rounded-xl focus:outline-none">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-luna-800">Số tài khoản ngân hàng</label>
+                            <input type="text" id="admin-cfg-bankno" class="w-full text-xs px-4 py-3 bg-luna-50 border border-luna-200 rounded-xl focus:outline-none">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-luna-800">Chủ tài khoản (VIET HOA KHONG DAU)</label>
+                            <input type="text" id="admin-cfg-bankholder" class="w-full text-xs px-4 py-3 bg-luna-50 border border-luna-200 rounded-xl focus:outline-none">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-luna-100 text-right space-x-3">
+                    <button onclick="saveAdminConfig()" class="bg-luna-600 hover:bg-luna-700 text-white font-bold text-xs px-6 py-3 rounded-xl shadow transition-all">
+                        Lưu Cấu Hình
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal xem to chi tiết thẻ đơn bánh -->
+    <div id="admin-order-detail-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-white rounded-3xl border border-luna-200 shadow-2xl p-6 sm:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto space-y-6 transform scale-95 transition-transform duration-300">
+            <div class="flex items-center justify-between border-b border-luna-100 pb-4">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-file-invoice text-luna-600 text-lg"></i>
+                    <h3 class="font-serif text-lg font-bold text-luna-800">Hóa Đơn Đơn Hàng Toàn Diện</h3>
+                </div>
+                <button onclick="closeAdminOrderDetailModal()" class="p-1.5 text-gray-400 hover:text-gray-600 rounded-full">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-4" id="admin-modal-invoice-content">
+                <!-- Nội dung hóa đơn bản to render ở đây -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Invoice Popup cho Khách sau khi bấm gửi đơn -->
+    <div id="invoice-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-white rounded-3xl border border-luna-200 shadow-2xl p-6 max-w-lg w-full max-h-[95vh] overflow-y-auto space-y-6 transform scale-95 transition-all duration-300">
+            <!-- Header -->
+            <div class="text-center space-y-2 border-b border-luna-100 pb-4">
+                <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto text-xl shadow-sm">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <h4 class="font-serif text-lg font-bold text-luna-800">Đặt Bánh Thành Công!</h4>
+                <p class="text-[10px] text-gray-400">Tiệm bánh đã nhận được đơn của bạn và đang đợi thanh toán xác thực.</p>
+            </div>
+
+            <!-- Tab lựa chọn phương thức thanh toán -->
+            <div class="grid grid-cols-2 gap-2 p-1 bg-luna-50 rounded-xl border border-luna-200">
+                <button onclick="switchInvoicePayTab('momo')" id="inv-tab-momo" class="py-2 text-[11px] font-bold rounded-lg transition-all text-center bg-white text-luna-800 shadow">
+                    📱 Quét MoMo QR
+                </button>
+                <button onclick="switchInvoicePayTab('vietqr')" id="inv-tab-vietqr" class="py-2 text-[11px] font-bold rounded-lg transition-all text-center text-gray-400 hover:text-luna-800">
+                    🏦 Quét VietQR (MB Bank)
+                </button>
+            </div>
+
+            <!-- Khung quét mã QR chi tiết tự điền tiền -->
+            <div class="space-y-4 text-center">
+                <!-- MoMo -->
+                <div id="invoice-pay-momo" class="invoice-pay-panel block space-y-3">
+                    <div class="w-48 h-48 mx-auto border-2 border-luna-100 rounded-2xl overflow-hidden shadow-inner p-1 bg-white">
+                        <img src="z7978951922886_f7aa5a8c5b1e4abb3ddb357324fe1b5c.jpg" alt="Mã MoMo nhận tiền" class="w-full h-full object-contain">
+                    </div>
+                    <span class="text-[10px] font-bold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full uppercase tracking-wider inline-block">MoMo Nhận Tiền Luna Bakery</span>
+                    <p class="text-[10px] text-gray-500 leading-relaxed max-w-xs mx-auto">
+                        Hãy quét mã MoMo trên bằng ứng dụng MoMo, nhập đúng số tiền <strong class="text-luna-600" id="inv-momo-price">0đ</strong> và nội dung chuyển khoản: <strong class="text-luna-600 font-mono" id="inv-momo-note">LUNA</strong>.
+                    </p>
+                </div>
+                <!-- VietQR -->
+                <div id="invoice-pay-vietqr" class="invoice-pay-panel hidden space-y-3">
+                    <div class="w-48 h-48 mx-auto border-2 border-luna-100 rounded-2xl overflow-hidden shadow-inner p-1 bg-white flex items-center justify-center">
+                        <img id="invoice-vietqr-img" src="" alt="Mã VietQR tự động" class="w-full h-full object-contain">
+                    </div>
+                    <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full uppercase tracking-wider inline-block">Mã VietQR Tự Động MB Bank</span>
+                    <p class="text-[10px] text-gray-500 leading-relaxed max-w-xs mx-auto">
+                        Mã QR đã bao gồm số tiền <strong class="text-luna-600" id="inv-vietqr-price">0đ</strong> và nội dung chuyển khoản. Bạn chỉ cần quét mã bằng app ngân hàng là hoàn tất, không cần nhập tiền thủ công!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Copy thông tin bằng chữ -->
+            <div class="p-4 bg-luna-50 rounded-2xl border border-luna-200 text-xs text-luna-800 space-y-2">
+                <div class="flex items-center justify-between">
+                    <span>Số tài khoản: <strong class="font-mono" id="inv-txt-no">0310188882888</strong></span>
+                    <button onclick="copyToClipboard('0310188882888')" class="text-luna-600 font-bold hover:underline">Sao chép</button>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span>Chủ tài khoản: <strong id="inv-txt-holder">LUNA BAKERY</strong></span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span>Nội dung CK: <strong class="font-mono text-red-600" id="inv-txt-note">LUNA</strong></span>
+                    <button onclick="copyToClipboard(document.getElementById('inv-txt-note').innerText)" class="text-luna-600 font-bold hover:underline">Sao chép</button>
+                </div>
+            </div>
+
+            <!-- Nút gửi hoàn tất liên hệ Zalo -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <button onclick="closeInvoiceModal()" class="w-full bg-gray-150 hover:bg-gray-200 text-gray-700 text-xs font-bold py-3.5 rounded-xl transition-all">
+                    Xem mẻ bánh khác
+                </button>
+                <button onclick="shareOrderToZalo()" class="w-full bg-luna-600 hover:bg-luna-700 text-white text-xs font-bold py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center space-x-1.5">
+                    <i class="fa-solid fa-comments"></i><span>Nhắn Zalo xác nhận đơn</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast-container" class="fixed bottom-6 left-6 z-50 space-y-2"></div>
+
+    <script>
+        /* ==================== CẤU HÌNH VÀ STATE TRANG WEB LUNA BAKERY ==================== */
+        let LUNA_CONFIG = {
+            adminPass: "admin",
+            hotline: "0904123456",
+            zaloPhone: "0904123456",
+            workingHours: "Thứ Hai – Chủ Nhật: 07:30 – 21:30",
+            address: "2/2/2/17 Đằng Hải, Phường Hải An, Thành phố Hải Phòng",
+            bankName: "TMCP Quân Đội (MB Bank)",
+            bankNo: "0310188882888",
+            bankHolder: "LUNA BAKERY",
+            prices: {
+                "Bánh Dứa Đài Loan (Hộp)": 85000,
+                "Bánh Trung Thu Đài Loan Nhân Mochi (Chiếc)": 65000,
+                "Bánh Ngói Hạnh Nhân (Túi)": 110000,
+                "Bánh Quy Yến Mạch Mè Đen (Túi)": 75000,
+                "Bánh Quy Mè Đen Nguyên Cám": 75000,
+                "Bánh Quy Bơ Hạnh Nhân (Hộp)": 90000,
+                "Bánh Quy Mơ Matcha (Hộp)": 95000,
+                "Biscotti Ngũ Cốc Ý (Hộp)": 120000,
+                "Hộp Mix Su Kem Tươi (Cơ bản)": 45000,
+                "Bông Lan Trứng Muối 14cm (Cơ bản)": 140000,
+                "Tart Hoa Quả Mini (Set 2)": 70000,
+                "builder_size_mini": 50000,
+                "builder_size_14cm": 140000,
+                "builder_size_16cm": 180000,
+                "builder_size_20cm": 240000,
+                "builder_top_egg": 15000,
+                "builder_top_pork": 15000,
+                "builder_top_cheese": 20000,
+                "builder_top_beef": 20000
+            }
+        };
+
+        // Danh sách giỏ hàng
+        let basketList = [];
+
+        // Trạng thái tự thiết kế bánh (Builder State)
+        let builderState = {
+            size: "mini",
+            price: 50000,
+            toppings: {} // Lưu { egg: true, pork: false }
+        };
+
+        // Lưu ảnh nén dạng base64 đính kèm
+        let attachedImageBase64 = "";
+
+        // Danh sách đơn hàng cục bộ để hiển thị trong admin
+        let localOrdersList = [];
+
+        // Khởi tạo trang web khi tải xong
+        window.onload = function() {
+            // Tải cấu hình và giỏ hàng từ localStorage (nếu có)
+            if (localStorage.getItem("LUNA_CONFIG_DB")) {
+                LUNA_CONFIG = JSON.parse(localStorage.getItem("LUNA_CONFIG_DB"));
+            }
+            if (localStorage.getItem("LUNA_BASKET_DB")) {
+                basketList = JSON.parse(localStorage.getItem("LUNA_BASKET_DB"));
+            }
+            if (localStorage.getItem("LUNA_ORDERS_DB")) {
+                localOrdersList = JSON.parse(localStorage.getItem("LUNA_ORDERS_DB"));
+            }
+
+            syncConfigUI();
+            updateBasketUI();
+            resetBuilderOptions();
+            toggleAddressField("delivery"); // Bật sẵn ô địa chỉ
+        };
+
+        // Đồng bộ cấu hình từ dữ liệu sang thẻ giao diện
+        function syncConfigUI() {
+            // Hotline
+            document.getElementById("header-hotline").innerText = LUNA_CONFIG.hotline;
+            document.getElementById("footer-hotline-2").innerText = LUNA_CONFIG.hotline;
+            // Địa chỉ & Giờ làm việc
+            document.getElementById("footer-address").innerText = LUNA_CONFIG.address;
+            document.getElementById("footer-working-hours").innerText = LUNA_CONFIG.workingHours;
+            // Số tài khoản VietQR
+            document.getElementById("inv-txt-no").innerText = LUNA_CONFIG.bankNo;
+            document.getElementById("inv-txt-holder").innerText = LUNA_CONFIG.bankHolder;
+
+            // Đồng bộ toàn bộ giá trị hiển thị trên Catalog
+            const priceElements = document.querySelectorAll(".price-val");
+            priceElements.forEach(el => {
+                const prodName = el.getAttribute("data-prod");
+                if (LUNA_CONFIG.prices[prodName]) {
+                    el.innerText = LUNA_CONFIG.prices[prodName].toLocaleString();
+                }
+            });
+
+            // Đồng bộ giá trong phần Tự thiết kế bánh
+            document.getElementById("lbl-size-mini").innerText = LUNA_CONFIG.prices["builder_size_mini"].toLocaleString() + "đ";
+            document.getElementById("lbl-size-14cm").innerText = LUNA_CONFIG.prices["builder_size_14cm"].toLocaleString() + "đ";
+            document.getElementById("lbl-size-16cm").innerText = LUNA_CONFIG.prices["builder_size_16cm"].toLocaleString() + "đ";
+            document.getElementById("lbl-size-20cm").innerText = LUNA_CONFIG.prices["builder_size_20cm"].toLocaleString() + "đ";
+
+            document.getElementById("lbl-top-egg").innerText = "+" + LUNA_CONFIG.prices["builder_top_egg"].toLocaleString() + "đ";
+            document.getElementById("lbl-top-pork").innerText = "+" + LUNA_CONFIG.prices["builder_top_pork"].toLocaleString() + "đ";
+            document.getElementById("lbl-top-cheese").innerText = "+" + LUNA_CONFIG.prices["builder_top_cheese"].toLocaleString() + "đ";
+            document.getElementById("lbl-top-beef").innerText = "+" + LUNA_CONFIG.prices["builder_top_beef"].toLocaleString() + "đ";
+
+            updateBuilderPriceUI();
+        }
+
+        // Tạo thông báo Pop Toast bay nhanh
+        function showToast(message, type = "success") {
+            const container = document.getElementById("toast-container");
+            const toast = document.createElement("div");
+            toast.className = `px-4 py-3 rounded-xl shadow-lg border text-xs font-semibold flex items-center space-x-2 transition-all duration-300 transform translate-y-2 opacity-0 bg-white border-luna-200 text-luna-800`;
+            
+            let icon = `<i class="fa-solid fa-circle-check text-green-500"></i>`;
+            if (type === "error") {
+                icon = `<i class="fa-solid fa-circle-xmark text-red-500"></i>`;
+            } else if (type === "info") {
+                icon = `<i class="fa-solid fa-bell text-blue-500"></i>`;
+            }
+
+            toast.innerHTML = `${icon}<span>${message}</span>`;
+            container.appendChild(toast);
+
+            // Trigger animation
+            setTimeout(() => {
+                toast.classList.remove("translate-y-2", "opacity-0");
+            }, 50);
+
+            // Auto-remove
+            setTimeout(() => {
+                toast.classList.add("translate-y-2", "opacity-0");
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        /* ==================== XỬ LÝ LỌC SẢN PHẨM ==================== */
+        function filterProducts(cat) {
+            const btns = document.querySelectorAll(".cat-btn");
+            btns.forEach(b => b.classList.remove("active", "bg-luna-600", "text-white"));
+            event.currentTarget.classList.add("active", "bg-luna-600", "text-white");
+
+            const cards = document.querySelectorAll(".bake-card");
+            cards.forEach(card => {
+                if (cat === "all") {
+                    card.style.display = "flex";
+                } else {
+                    const cardType = card.getAttribute("data-type");
+                    if (cardType === cat) {
+                        card.style.display = "flex";
+                    } else {
+                        card.style.display = "none";
+                    }
+                }
+            });
+        }
+
+        /* ==================== XỬ LÝ GIỎ HÀNG LUNA BAKERY ==================== */
+        // Bật tắt Giỏ hàng Drawer
+        function toggleBasket() {
+            const drawer = document.getElementById("basket-drawer");
+            const overlay = document.getElementById("basket-overlay");
+            if (drawer.classList.contains("translate-x-full")) {
+                drawer.classList.remove("translate-x-full");
+                overlay.classList.remove("opacity-0", "pointer-events-none");
+            } else {
+                drawer.classList.add("translate-x-full");
+                overlay.classList.add("opacity-0", "pointer-events-none");
+            }
+        }
+
+        // Đồng bộ giỏ hàng lên giao diện
+        function updateBasketUI() {
+            const badge = document.getElementById("basket-badge");
+            const countLabel = document.getElementById("drawer-item-count");
+            const listContainer = document.getElementById("drawer-items-list");
+            const drawerTotal = document.getElementById("drawer-total-price");
+            const formTotal = document.getElementById("form-total-price");
+
+            // Đếm tổng số lượng
+            let totalItems = 0;
+            let totalAmount = 0;
+            listContainer.innerHTML = "";
+
+            basketList.forEach((item, index) => {
+                totalItems += item.qty;
+                const itemTotal = item.unitPrice * item.qty;
+                totalAmount += itemTotal;
+
+                // Tạo giao diện thẻ giỏ hàng nhỏ
+                const itemCard = document.createElement("div");
+                itemCard.className = "flex items-center space-x-3 p-3 bg-luna-50 rounded-2xl border border-luna-100";
+                itemCard.innerHTML = `
+                    <img src="${item.img}" onerror="this.src='https://placehold.co/100x100/f3eae0/704337?text=Luna'" class="w-12 h-12 object-cover rounded-lg border border-luna-200">
+                    <div class="flex-grow text-left">
+                        <h4 class="text-xs font-bold text-luna-800 line-clamp-1">${item.name}</h4>
+                        <span class="text-[10px] text-luna-500 font-bold block mt-0.5">${item.unitPrice.toLocaleString()}đ</span>
+                        <div class="flex items-center space-x-2 mt-2">
+                            <button onclick="changeQty(${index}, -1)" class="w-5 h-5 bg-white border border-luna-200 rounded text-[10px] font-bold flex items-center justify-center hover:bg-luna-100">-</button>
+                            <span class="text-xs font-bold font-mono">${item.qty}</span>
+                            <button onclick="changeQty(${index}, 1)" class="w-5 h-5 bg-white border border-luna-200 rounded text-[10px] font-bold flex items-center justify-center hover:bg-luna-100">+</button>
+                        </div>
+                    </div>
+                    <button onclick="removeBasketItem(${index})" class="text-gray-300 hover:text-red-500 p-1">
+                        <i class="fa-solid fa-trash-can text-sm"></i>
+                    </button>
+                `;
+                listContainer.appendChild(itemCard);
+            });
+
+            // Badge
+            if (totalItems > 0) {
+                badge.innerText = totalItems;
+                badge.classList.remove("scale-0");
+                countLabel.innerText = `${totalItems} món`;
+            } else {
+                badge.classList.add("scale-0");
+                countLabel.innerText = "Trống";
+                listContainer.innerHTML = `
+                    <div class="py-12 text-center text-gray-400 space-y-2">
+                        <i class="fa-solid fa-basket-shopping text-3xl opacity-30"></i>
+                        <p class="text-xs">Giỏ hàng của bạn đang trống.</p>
+                    </div>
+                `;
+            }
+
+            // Đồng bộ tổng tiền
+            drawerTotal.innerText = totalAmount.toLocaleString() + "đ";
+            formTotal.innerText = totalAmount.toLocaleString() + "đ";
+
+            // Đồng bộ chuỗi tóm tắt đơn vào Form dán
+            const summaryBox = document.getElementById("cust-order-summary");
+            if (basketList.length > 0) {
+                let textStr = "";
+                basketList.forEach((it, i) => {
+                    textStr += `${i + 1}. ${it.name} [SL: ${it.qty}] - Giá: ${(it.unitPrice * it.qty).toLocaleString()}đ\n`;
+                });
+                textStr += `---------------------------\nTONG TIEN: ${totalAmount.toLocaleString()}đ`;
+                summaryBox.value = textStr;
+            } else {
+                summaryBox.value = "Chưa có món bánh nào được chọn.";
+            }
+
+            // Lưu dữ liệu vào cache
+            localStorage.setItem("LUNA_BASKET_DB", JSON.stringify(basketList));
+        }
+
+        // Tăng giảm số lượng bánh trong giỏ
+        function changeQty(index, offset) {
+            basketList[index].qty += offset;
+            if (basketList[index].qty <= 0) {
+                basketList.splice(index, 1);
+            }
+            updateBasketUI();
+        }
+
+        // Xóa hẳn 1 món
+        function removeBasketItem(index) {
+            basketList.splice(index, 1);
+            updateBasketUI();
+            showToast("Đã xóa sản phẩm khỏi giỏ hàng", "info");
+        }
+
+        // Thêm sản phẩm nhanh bằng thẻ Catalog
+        function addProdToCartByElement(prodName, imgUrl) {
+            const price = LUNA_CONFIG.prices[prodName] || 50000;
+            
+            // Tìm xem đã tồn tại trong giỏ chưa
+            const existIdx = basketList.findIndex(it => it.name === prodName);
+            if (existIdx !== -1) {
+                basketList[existIdx].qty += 1;
+            } else {
+                basketList.push({
+                    name: prodName,
+                    qty: 1,
+                    unitPrice: price,
+                    img: imgUrl
+                });
+            }
+
+            updateBasketUI();
+            showToast(`Đã thêm món "${prodName}" vào giỏ hàng`);
+        }
+
+        // Bấm nút đi đến form thanh toán
+        function checkoutAndScroll() {
+            toggleBasket();
+            const formSec = document.getElementById("checkout");
+            formSec.scrollIntoView({ behavior: "smooth" });
+        }
+
+        /* ==================== XỬ LÝ TỰ THIẾT KẾ BÁNH 2D (BUILDER) ==================== */
+        function setBuilderSize(sizeKey, basePrice) {
+            builderState.size = sizeKey;
+            
+            // Bỏ active toàn bộ nhãn size
+            const labels = document.querySelectorAll("input[name='cake_size']");
+            labels.forEach(input => {
+                input.parentElement.classList.remove("border-luna-600", "bg-luna-50/50");
+                input.parentElement.classList.add("border-gray-150");
+            });
+
+            // Active kích thước chọn
+            const checkedInput = document.querySelector(`input[name='cake_size'][value='${sizeKey}']`);
+            checkedInput.parentElement.classList.remove("border-gray-150");
+            checkedInput.parentElement.classList.add("border-luna-600", "bg-luna-50/50");
+
+            // Co giãn mặt bánh tương ứng
+            const sponge = document.getElementById("cake-sponge");
+            const sizeLabel = document.getElementById("cake-size-label");
+            if (sizeKey === "mini") {
+                sponge.style.transform = "scale(0.85)";
+                sizeLabel.innerText = "Cỡ Mini";
+            } else if (sizeKey === "14cm") {
+                sponge.style.transform = "scale(0.95)";
+                sizeLabel.innerText = "Cỡ 14cm";
+            } else if (sizeKey === "16cm") {
+                sponge.style.transform = "scale(1.05)";
+                sizeLabel.innerText = "Cỡ 16cm";
+            } else {
+                sponge.style.transform = "scale(1.15)";
+                sizeLabel.innerText = "Cỡ 20cm";
+            }
+
+            updateBuilderPriceUI();
+        }
+
+        function toggleBuilderTopping(topKey, topPrice, checkboxEl) {
+            builderState.toppings[topKey] = checkboxEl.checked;
+            
+            // Vẽ/Xóa hạt Topping mô phỏng trên bánh
+            const container = document.getElementById("topping-container");
+            if (checkboxEl.checked) {
+                // Tạo 15 chấm tròn rơi rải rác
+                for (let i = 0; i < 15; i++) {
+                    const topDot = document.createElement("div");
+                    topDot.className = `absolute rounded-full shadow-inner transition-all duration-500 el-top-${topKey}`;
+                    
+                    // Tạo vị trí ngẫu nhiên hình tròn
+                    const angle = Math.random() * Math.PI * 2;
+                    const radius = Math.random() * 65; // Giới hạn bán kính rơi trên mặt bánh
+                    const x = Math.cos(angle) * radius + 90; // Center X
+                    const y = Math.sin(angle) * radius + 90; // Center Y
+
+                    topDot.style.left = `${x}px`;
+                    topDot.style.top = `${y}px`;
+
+                    // Style đặc thù
+                    if (topKey === "egg") {
+                        topDot.className += " w-3 h-3 bg-yellow-500 border border-amber-600"; // Trứng muối viên tròn vàng cam
+                    } else if (topKey === "pork") {
+                        topDot.className += " w-1.5 h-4 bg-orange-200 rounded-sm"; // Chà bông sợi mảnh
+                    } else if (topKey === "cheese") {
+                        topDot.className += " w-3.5 h-3.5 bg-yellow-200 border border-yellow-300 rounded-sm"; // Viên phô mai vuông
+                    } else if (topKey === "beef") {
+                        topDot.className += " w-2 h-3.5 bg-red-800 rounded-sm"; // Sợi khô bò đỏ nâu
+                    }
+
+                    container.appendChild(topDot);
+                }
+            } else {
+                // Xóa toàn bộ tệp topping này
+                const dots = container.querySelectorAll(`.el-top-${topKey}`);
+                dots.forEach(d => d.remove());
+            }
+
+            updateBuilderPriceUI();
+        }
+
+        // Tính toán tổng tiền thiết kế theo bảng cấu hình
+        function updateBuilderPriceUI() {
+            const sizePrice = LUNA_CONFIG.prices[`builder_size_${builderState.size}`] || 50000;
+            let sum = sizePrice;
+
+            for (const key in builderState.toppings) {
+                if (builderState.toppings[key]) {
+                    const topPrice = LUNA_CONFIG.prices[`builder_top_${key}`] || 15000;
+                    sum += topPrice;
+                }
+            }
+
+            builderState.price = sum;
+            document.getElementById("builder-total-price").innerText = sum.toLocaleString() + "đ";
+        }
+
+        // Đưa mẻ bánh tự thiết kế vào giỏ
+        function addBuiltCakeToBasket() {
+            let desc = `Bánh phối riêng (${builderState.size.toUpperCase()})`;
+            let chosenTops = [];
+            
+            if (builderState.toppings["egg"]) chosenTops.push("Trứng muối");
+            if (builderState.toppings["pork"]) chosenTops.push("Chà bông");
+            if (builderState.toppings["cheese"]) chosenTops.push("Phô mai viên");
+            if (builderState.toppings["beef"]) chosenTops.push("Khô bò cay");
+
+            if (chosenTops.length > 0) {
+                desc += " + Topping: " + chosenTops.join(", ");
+            } else {
+                desc += " (Chỉ cốt Chiffon cơ bản)";
+            }
+
+            basketList.push({
+                name: desc,
+                qty: 1,
+                unitPrice: builderState.price,
+                img: "z7936444382829_4aea2017b8c46ef0386479a275d22700.jpg" // Sử dụng hình ảnh Bông Lan Trứng Muối gốc
+            });
+
+            updateBasketUI();
+            resetBuilderOptions();
+            showToast("Đã thêm bánh bông lan phối riêng vào giỏ!");
+        }
+
+        // Reset lại form phối bánh
+        function resetBuilderOptions() {
+            builderState.size = "mini";
+            builderState.price = LUNA_CONFIG.prices["builder_size_mini"];
+            builderState.toppings = {};
+
+            // Uncheck toàn bộ checkbox
+            const checkboxes = document.querySelectorAll("#builder input[type='checkbox']");
+            checkboxes.forEach(c => c.checked = false);
+
+            // Xóa topping vẽ 2D
+            document.getElementById("topping-container").innerHTML = "";
+
+            setBuilderSize("mini", builderState.price);
+        }
+
+        /* ==================== XỬ LÝ ẨN HIỆN Ô ĐỊA CHỈ ==================== */
+        function toggleAddressField(method) {
+            const addrContainer = document.getElementById("address-field-container");
+            const addrInput = document.getElementById("cust-address");
+            if (method === "delivery") {
+                addrContainer.style.display = "block";
+                addrInput.required = true;
+            } else {
+                addrContainer.style.display = "none";
+                addrInput.required = false;
+                addrInput.value = ""; // Clear để tránh nhập nhầm
+            }
+        }
+
+        /* ==================== XỬ LÝ NÉN ẢNH CANVAS GỬI KÈM ==================== */
+        function processAndCompressImage(fileInput) {
+            const file = fileInput.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement("canvas");
+                    const ctx = canvas.getContext("2d");
+
+                    // Thiết lập kích thước nén tối đa 400px rộng/cao để tệp Base64 siêu mỏng nhẹ dưới 100KB
+                    let width = img.width;
+                    let height = img.height;
+                    const max_size = 400;
+
+                    if (width > height) {
+                        if (width > max_size) {
+                            height *= max_size / width;
+                            width = max_size;
+                        }
+                    } else {
+                        if (height > max_size) {
+                            width *= max_size / height;
+                            height = max_size;
+                        }
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    // Nén chất lượng ảnh JPEG xuống 60%
+                    attachedImageBase64 = canvas.toDataURL("image/jpeg", 0.6);
+
+                    // Bật preview ảnh nhỏ xinh xắn
+                    const previewBox = document.getElementById("attachment-preview-box");
+                    const previewImg = document.getElementById("attachment-preview");
+                    previewImg.src = attachedImageBase64;
+                    previewBox.style.display = "flex";
+
+                    showToast("Đã xử lý và nén ảnh mượt mà!", "success");
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Hủy bỏ ảnh đính kèm
+        function removeAttachedImage() {
+            attachedImageBase64 = "";
+            document.getElementById("cust-attachment").value = "";
+            document.getElementById("attachment-preview-box").style.display = "none";
+            showToast("Đã gỡ bỏ tệp đính kèm", "info");
+        }
+
+        /* ==================== XỬ LÝ SUBMIT ĐƠN HÀNG VÀ THANH TOÁN QR ==================== */
+        let currentCheckoutOrder = null; // Lưu đơn hàng vừa submit để tương tác tiếp
+
+        function submitFormOrder(e) {
+            e.preventDefault();
+
+            if (basketList.length === 0) {
+                showToast("Vui lòng chọn thêm bánh vào giỏ hàng trước khi đặt!", "error");
+                return;
+            }
+
+            const name = document.getElementById("cust-name").value;
+            const phone = document.getElementById("cust-phone").value;
+            const deliveryMethod = document.getElementById("cust-delivery-method").value;
+            const deliveryTime = document.getElementById("cust-delivery-time").value;
+            const address = document.getElementById("cust-address").value || "Khách qua cửa hàng lấy trực tiếp";
+            const note = document.getElementById("cust-message").value || "Không ghi chú";
+            const summary = document.getElementById("cust-order-summary").value;
+
+            // Tính tổng tiền đơn hàng
+            let totalAmount = 0;
+            basketList.forEach(it => {
+                totalAmount += it.unitPrice * it.qty;
+            });
+
+            // Ghi nhận đơn hàng mới
+            currentCheckoutOrder = {
+                id: "LUNA-" + Date.now().toString().slice(-6),
+                time: new Date().toLocaleString(),
+                customerName: name,
+                customerPhone: phone,
+                deliveryMethod: deliveryMethod === "delivery" ? "Giao tận tay" : "Qua lấy trực tiếp",
+                deliveryTime: deliveryTime,
+                deliveryAddress: address,
+                notes: note,
+                detailsText: summary,
+                totalAmount: totalAmount,
+                imageAttachment: attachedImageBase64,
+                status: "Mới"
+            };
+
+            // Thêm vào database cục bộ và lưu cache
+            localOrdersList.unshift(currentCheckoutOrder);
+            localStorage.setItem("LUNA_ORDERS_DB", JSON.stringify(localOrdersList));
+
+            // Làm sạch Form và Giỏ hàng sau khi ghi nhận
+            document.getElementById("order-form").reset();
+            basketList = [];
+            attachedImageBase64 = "";
+            document.getElementById("attachment-preview-box").style.display = "none";
+            updateBasketUI();
+
+            // Mở Modal Hóa Đơn Thanh Toán Dynamic
+            openInvoiceModal();
+        }
+
+        /* ==================== CHỨC NĂNG DYNAMIC INVOICE MODAL ==================== */
+        function openInvoiceModal() {
+            if (!currentCheckoutOrder) return;
+
+            const modal = document.getElementById("invoice-modal");
+            modal.classList.remove("opacity-0", "pointer-events-none");
+            modal.querySelector(".transform").classList.remove("scale-95");
+
+            const totalAmountStr = currentCheckoutOrder.totalAmount.toLocaleString() + "đ";
+            const ckNote = `LUNA ${currentCheckoutOrder.customerPhone}`;
+
+            // Đồng bộ nội dung số tiền chuyển khoản
+            document.getElementById("inv-momo-price").innerText = totalAmountStr;
+            document.getElementById("inv-momo-note").innerText = ckNote;
+            document.getElementById("inv-vietqr-price").innerText = totalAmountStr;
+            document.getElementById("inv-txt-note").innerText = ckNote;
+
+            // Tạo mã VietQR Bank tự động điền tiền MB Bank dựa trên VietQR API miễn phí
+            // Định dạng API: https://img.vietqr.io/image/<BANK_ID>-<ACCOUNT_NO>-<TEMPLATE>.png?amount=<AMOUNT>&addInfo=<DESCRIPTION>&accountName=<ACCOUNT_NAME>
+            const bankId = "MB";
+            const accountNo = LUNA_CONFIG.bankNo;
+            const addInfo = encodeURIComponent(ckNote);
+            const accountName = encodeURIComponent(LUNA_CONFIG.bankHolder);
+            const vietQrUrl = `https://img.vietqr.io/image/${bankId}-${accountNo}-print.png?amount=${currentCheckoutOrder.totalAmount}&addInfo=${addInfo}&accountName=${accountName}`;
+            
+            document.getElementById("invoice-vietqr-img").src = vietQrUrl;
+
+            // Bật sẵn tab MoMo mặc định
+            switchInvoicePayTab("momo");
+        }
+
+        function closeInvoiceModal() {
+            const modal = document.getElementById("invoice-modal");
+            modal.classList.add("opacity-0", "pointer-events-none");
+            modal.querySelector(".transform").classList.add("scale-95");
+            currentCheckoutOrder = null;
+        }
+
+        function switchInvoicePayTab(type) {
+            const btnMomo = document.getElementById("inv-tab-momo");
+            const btnVietqr = document.getElementById("inv-tab-vietqr");
+            const pnlMomo = document.getElementById("invoice-pay-momo");
+            const pnlVietqr = document.getElementById("invoice-pay-vietqr");
+
+            if (type === "momo") {
+                btnMomo.className = "py-2 text-[11px] font-bold rounded-lg transition-all text-center bg-white text-luna-800 shadow";
+                btnVietqr.className = "py-2 text-[11px] font-bold rounded-lg transition-all text-center text-gray-400 hover:text-luna-800";
+                pnlMomo.style.display = "block";
+                pnlVietqr.style.display = "none";
+            } else {
+                btnVietqr.className = "py-2 text-[11px] font-bold rounded-lg transition-all text-center bg-white text-luna-800 shadow";
+                btnMomo.className = "py-2 text-[11px] font-bold rounded-lg transition-all text-center text-gray-400 hover:text-luna-800";
+                pnlVietqr.style.display = "block";
+                pnlMomo.style.display = "none";
+            }
+        }
+
+        // Nhắn Zalo gửi thông báo đơn kèm thông tin chuyển khoản đã copy
+        function shareOrderToZalo() {
+            if (!currentCheckoutOrder) return;
+
+            const ckNote = `LUNA ${currentCheckoutOrder.customerPhone}`;
+            const textToCopy = `📋 ĐƠN HÀNG CỦA TÔI (${currentCheckoutOrder.id})\n` +
+                               `- Khách hàng: ${currentCheckoutOrder.customerName}\n` +
+                               `- SĐT liên hệ: ${currentCheckoutOrder.customerPhone}\n` +
+                               `- Cách nhận bánh: ${currentCheckoutOrder.deliveryMethod}\n` +
+                               `- Giờ muốn nhận: ${currentCheckoutOrder.deliveryTime}\n` +
+                               `- Địa chỉ nhận: ${currentCheckoutOrder.deliveryAddress}\n` +
+                               `- Ghi chú viết chữ: ${currentCheckoutOrder.notes}\n` +
+                               `--------------------------------\n` +
+                               `${currentCheckoutOrder.detailsText}\n` +
+                               `--------------------------------\n` +
+                               `👉 Tôi đã chuyển khoản số tiền ${currentCheckoutOrder.totalAmount.toLocaleString()}đ với nội dung chuyển khoản "${ckNote}". Hãy duyệt nướng bánh cho tôi nhé!`;
+
+            // Sao chép nội dung vào khay nhớ tạm
+            copyToClipboard(textToCopy);
+
+            // Chuyển hướng chat Zalo với hotline của tiệm
+            setTimeout(() => {
+                const cleanPhone = LUNA_CONFIG.zaloPhone.replace(/[\s\.\-\+]/g, "");
+                window.open(`https://zalo.me/${cleanPhone}`, "_blank");
+            }, 300);
+        }
+
+        // Hàm copy văn bản thủ công an toàn nhất
+        function copyToClipboard(text) {
+            const el = document.createElement("textarea");
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand("copy");
+            document.body.removeChild(el);
+            showToast("Đã sao chép thông tin thành công!", "success");
+        }
+
+        /* ==================== BẢNG ĐIỀU KHIỂN QUẢN TRỊ ADMIN ==================== */
+        function openAdminPanel() {
+            const loginModal = document.getElementById("login-modal");
+            loginModal.classList.remove("opacity-0", "pointer-events-none");
+            loginModal.querySelector(".transform").classList.remove("scale-95");
+            document.getElementById("admin-pass").focus();
+        }
+
+        function closeAdminLogin() {
+            const loginModal = document.getElementById("login-modal");
+            loginModal.classList.add("opacity-0", "pointer-events-none");
+            loginModal.querySelector(".transform").classList.add("scale-95");
+            document.getElementById("admin-pass").value = "";
+        }
+
+        function verifyAdminLogin() {
+            const pass = document.getElementById("admin-pass").value;
+            if (pass === LUNA_CONFIG.adminPass) {
+                closeAdminLogin();
+                // Bật Panel chính
+                document.getElementById("admin-panel").classList.remove("hidden");
+                // Reset tab hoạt động
+                switchAdminTab("orders");
+                syncAdminTabOrders();
+                syncAdminTabPrices();
+                syncAdminTabConfig();
+                showToast("Chào mừng chủ tiệm Luna Bakery trở lại!", "success");
+            } else {
+                showToast("Sai mã bảo vệ! Vui lòng kiểm tra lại.", "error");
+            }
+        }
+
+        function closeAdminPanel() {
+            document.getElementById("admin-panel").classList.add("hidden");
+            document.getElementById("admin-pass").value = "";
+        }
+
+        function switchAdminTab(tabKey) {
+            const btns = document.querySelectorAll(".admin-tab-btn");
+            btns.forEach(b => b.className = "admin-tab-btn text-gray-400 font-serif text-sm pb-2.5 px-2 transition-all");
+
+            const activeBtn = document.getElementById(`tab-btn-${tabKey}`);
+            activeBtn.className = "admin-tab-btn active border-b-2 border-luna-600 text-luna-800 font-serif text-sm font-bold pb-2.5 px-2 transition-all";
+
+            const panels = document.querySelectorAll(".admin-tab-panel");
+            panels.forEach(p => p.classList.replace("block", "hidden"));
+
+            document.getElementById(`admin-tab-${tabKey}`).classList.replace("hidden", "block");
+        }
+
+        /* --- XỬ LÝ TAB 1: DANH SÁCH ĐƠN BÁNH MỚI (Bản Thẻ Card Lớn Rộng Rãi) --- */
+        function syncAdminTabOrders() {
+            const countBadge = document.getElementById("admin-orders-count");
+            const gridContainer = document.getElementById("admin-orders-grid");
+
+            countBadge.innerText = localOrdersList.length;
+            gridContainer.innerHTML = "";
+
+            if (localOrdersList.length === 0) {
+                gridContainer.innerHTML = `
+                    <div class="md:col-span-2 bg-white p-12 text-center text-gray-400 rounded-3xl border border-luna-150 space-y-3">
+                        <i class="fa-solid fa-receipt text-4xl opacity-35"></i>
+                        <h4 class="font-serif text-base font-bold text-gray-600">Chưa nhận đơn đặt bánh nào mới</h4>
+                        <p class="text-xs">Mọi đơn khách đặt bên ngoài sẽ ngay lập tức được truyền và sắp xếp tại đây.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            localOrdersList.forEach((order, idx) => {
+                const card = document.createElement("div");
+                card.className = `p-6 bg-white rounded-3xl border ${order.status === 'Đã duyệt' ? 'border-blue-200 bg-blue-50/5' : order.status === 'Xong' ? 'border-green-200 bg-green-50/5' : 'border-luna-200'} shadow-sm flex flex-col justify-between space-y-4`;
+                
+                let statusLabelClass = "bg-amber-100 text-amber-700";
+                if (order.status === "Đã duyệt") statusLabelClass = "bg-blue-100 text-blue-700";
+                if (order.status === "Xong") statusLabelClass = "bg-green-100 text-green-700";
+
+                card.innerHTML = `
+                    <!-- Header Thẻ -->
+                    <div class="flex items-start justify-between pb-3 border-b border-luna-100">
+                        <div class="text-left">
+                            <span class="text-[10px] text-gray-400 font-mono block">${order.time}</span>
+                            <h4 class="font-serif text-base font-bold text-luna-800 mt-0.5">${order.customerName}</h4>
+                            <a href="tel:${order.customerPhone}" class="text-xs font-semibold text-luna-600 hover:underline block mt-0.5">
+                                <i class="fa-solid fa-phone text-[9px]"></i> ${order.customerPhone}
+                            </a>
+                        </div>
+                        <span class="text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider ${statusLabelClass}">${order.status}</span>
+                    </div>
+
+                    <!-- Body Thẻ (Chia 2 cột nhỏ nếu cần) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-1 gap-4 text-xs text-left">
+                        <div class="space-y-1 bg-luna-50/50 p-3 rounded-2xl border border-luna-100">
+                            <span class="text-[9px] text-gray-400 font-bold block uppercase tracking-wider">Thông tin nhận bánh</span>
+                            <p><strong>📍 Cách nhận:</strong> ${order.deliveryMethod}</p>
+                            <p><strong>⏰ Giờ mong muốn:</strong> ${order.deliveryTime}</p>
+                            <p class="line-clamp-2"><strong>🗺️ Địa chỉ nhận:</strong> ${order.deliveryAddress}</p>
+                        </div>
+
+                        <div class="space-y-1">
+                            <span class="text-[9px] text-gray-400 font-bold block uppercase tracking-wider">Lời ghi lên bánh</span>
+                            <p class="text-xs italic text-luna-700 font-serif font-medium bg-amber-50 p-2.5 rounded-xl border border-amber-100">
+                                "${order.notes}"
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Footer Thẻ và Toàn Bộ Nút Điều Hướng Rộng Rãi -->
+                    <div class="pt-4 border-t border-luna-100 flex flex-wrap items-center justify-between gap-3">
+                        <div class="text-left">
+                            <span class="text-[10px] text-gray-400 block font-medium">Tổng thu hộ</span>
+                            <span class="text-lg font-serif font-bold text-luna-600">${order.totalAmount.toLocaleString()}đ</span>
+                        </div>
+                        
+                        <div class="flex items-center space-x-2">
+                            <button onclick="changeOrderStatus(${idx}, 'Đã duyệt')" class="bg-blue-50 hover:bg-blue-100 text-blue-700 text-[10px] font-bold px-3 py-2 rounded-lg border border-blue-200 transition-all">Duyệt</button>
+                            <button onclick="changeOrderStatus(${idx}, 'Xong')" class="bg-green-50 hover:bg-green-100 text-green-700 text-[10px] font-bold px-3 py-2 rounded-lg border border-green-200 transition-all">Xong</button>
+                            <button onclick="openAdminOrderDetailModal(${idx})" class="bg-luna-600 hover:bg-luna-700 text-white text-[10px] font-bold px-4 py-2 rounded-lg shadow-sm transition-all flex items-center space-x-1">
+                                <i class="fa-solid fa-magnifying-glass"></i><span>Xem to hẳn</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                gridContainer.appendChild(card);
+            });
+        }
+
+        // Cập nhật trạng thái duyệt đơn hàng
+        function changeOrderStatus(idx, newStatus) {
+            localOrdersList[idx].status = newStatus;
+            localStorage.setItem("LUNA_ORDERS_DB", JSON.stringify(localOrdersList));
+            syncAdminTabOrders();
+            showToast(`Đã đổi trạng thái đơn hàng sang "${newStatus}"`, "success");
+        }
+
+        // Xóa sạch toàn bộ đơn
+        function clearAllOrders() {
+            if (confirm("Chủ tiệm chắc chắn muốn xóa toàn bộ lịch sử đơn đặt bánh? Hành động này không thể hoàn tác!")) {
+                localOrdersList = [];
+                localStorage.setItem("LUNA_ORDERS_DB", JSON.stringify([]));
+                syncAdminTabOrders();
+                showToast("Đã dọn dẹp sạch sẽ danh sách đơn hàng cục bộ!", "info");
+            }
+        }
+
+        /* --- XỬ LÝ MỞ POPUP PHÓNG TO HÓA ĐƠN CHI TIẾT BẢN CỰC LỚN --- */
+        function openAdminOrderDetailModal(idx) {
+            const order = localOrdersList[idx];
+            const modal = document.getElementById("admin-order-detail-modal");
+            const container = document.getElementById("admin-modal-invoice-content");
+
+            container.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start text-xs text-left">
+                    <!-- Thông tin khách hàng chi tiết dãn cách rộng rãi -->
+                    <div class="space-y-4">
+                        <div class="bg-luna-50 p-5 rounded-2xl border border-luna-200 space-y-2.5">
+                            <h5 class="font-serif text-sm font-bold text-luna-800 border-b border-luna-200 pb-1.5 uppercase tracking-wider">Khách hàng</h5>
+                            <p class="text-sm">Họ và Tên: <strong class="text-luna-800">${order.customerName}</strong></p>
+                            <p class="text-sm">Hotline: <strong class="text-luna-800">${order.customerPhone}</strong></p>
+                            <p class="text-sm">Cách nhận: <strong class="text-luna-800">${order.deliveryMethod}</strong></p>
+                            <p class="text-sm">Giờ mong muốn: <strong class="text-luna-800">${order.deliveryTime}</strong></p>
+                        </div>
+
+                        <div class="bg-amber-50/50 p-5 rounded-2xl border border-amber-200 space-y-2">
+                            <h5 class="font-serif text-sm font-bold text-amber-800 border-b border-amber-200 pb-1.5 uppercase tracking-wider">📍 Địa chỉ nhận bánh</h5>
+                            <p class="text-sm font-medium leading-relaxed">${order.deliveryAddress}</p>
+                        </div>
+
+                        <div class="bg-luna-100/50 p-5 rounded-2xl border border-luna-200 space-y-2">
+                            <h5 class="font-serif text-sm font-bold text-luna-800 border-b border-luna-200 pb-1.5 uppercase tracking-wider">✍️ Lời nhắn trên bánh</h5>
+                            <p class="text-sm font-serif italic text-luna-900 leading-relaxed">"${order.notes}"</p>
+                        </div>
+                    </div>
+
+                    <!-- Danh sách bánh đặt, ảnh đính kèm và tổng tiền -->
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 p-5 rounded-2xl border border-gray-200 space-y-2.5">
+                            <h5 class="font-serif text-sm font-bold text-gray-800 border-b border-gray-200 pb-1.5 uppercase tracking-wider">Chi tiết mẻ bánh đặt</h5>
+                            <textarea readonly class="w-full h-32 text-[11px] bg-white border border-gray-150 rounded-xl p-3 font-mono focus:outline-none focus:ring-0 leading-relaxed">${order.detailsText}</textarea>
+                            <div class="flex items-center justify-between pt-2 border-t border-gray-150">
+                                <span class="text-xs text-gray-400 font-bold block uppercase">Tổng tiền thanh toán</span>
+                                <span class="text-xl font-serif font-bold text-luna-600">${order.totalAmount.toLocaleString()}đ</span>
+                            </div>
+                        </div>
+
+                        <!-- Cột hiển thị ảnh đính kèm của khách hàng phóng to sắc nét -->
+                        <div class="bg-white p-4 rounded-2xl border border-luna-200 space-y-2 text-center">
+                            <h5 class="font-serif text-[11px] font-bold text-luna-700 uppercase tracking-widest text-left">📸 Ảnh mẫu / Ảnh hóa đơn khách gửi</h5>
+                            ${order.imageAttachment ? `
+                                <img src="${order.imageAttachment}" class="w-full max-h-48 object-contain rounded-xl border border-gray-200 shadow-inner">
+                                <a href="${order.imageAttachment}" target="_blank" class="text-[10px] text-luna-600 font-bold hover:underline inline-block mt-2">
+                                    <i class="fa-solid fa-up-right-from-square text-[9px]"></i> Xem ảnh phóng to kích thước đầy đủ
+                                </a>
+                            ` : `
+                                <div class="py-6 text-center text-gray-300">
+                                    <i class="fa-solid fa-image text-2xl opacity-40"></i>
+                                    <p class="text-[10px] mt-1">Đơn đặt bánh này không có tệp đính kèm.</p>
+                                </div>
+                            `}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-luna-100 flex items-center justify-end space-x-3">
+                    <button onclick="copyToClipboard(\`${order.detailsText}\n📍 Địa chỉ nhận: ${order.deliveryAddress}\n☎️ SĐT: ${order.customerPhone}\`)" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold px-4 py-2.5 rounded-xl transition-all flex items-center space-x-1.5">
+                        <i class="fa-solid fa-copy"></i><span>Sao chép thông tin Shipper</span>
+                    </button>
+                    <button onclick="closeAdminOrderDetailModal()" class="bg-luna-600 hover:bg-luna-700 text-white text-xs font-bold px-6 py-2.5 rounded-xl shadow transition-all">
+                        Đóng hóa đơn
+                    </button>
+                </div>
+            `;
+
+            modal.classList.remove("opacity-0", "pointer-events-none");
+            modal.querySelector(".transform").classList.remove("scale-95");
+        }
+
+        function closeAdminOrderDetailModal() {
+            const modal = document.getElementById("admin-order-detail-modal");
+            modal.classList.add("opacity-0", "pointer-events-none");
+            modal.querySelector(".transform").classList.add("scale-95");
+        }
+
+        /* --- XỬ LÝ TAB 2: QUẢN LÝ BIỂU GIÁ BÁNH TẠI QUẦY --- */
+        function syncAdminTabPrices() {
+            const container = document.getElementById("admin-prices-form-grid");
+            container.innerHTML = "";
+
+            for (const key in LUNA_CONFIG.prices) {
+                // Tạo ô nhập giá thân thiện
+                let labelText = key;
+                if (key.startsWith("builder_size_")) labelText = "Size Bánh phối: " + key.replace("builder_size_", "").toUpperCase();
+                if (key.startsWith("builder_top_")) labelText = "Topping bánh phối: " + key.replace("builder_top_", "").toUpperCase();
+
+                const formGroup = document.createElement("div");
+                formGroup.className = "space-y-1.5 text-left";
+                formGroup.innerHTML = `
+                    <label class="text-[11px] font-bold text-luna-700 block">${labelText}</label>
+                    <div class="relative rounded-xl shadow-xs">
+                        <input type="number" data-key="${key}" value="${LUNA_CONFIG.prices[key]}" class="admin-price-input w-full text-xs px-4 py-3 bg-luna-50 border border-luna-200 rounded-xl focus:bg-white focus:outline-none focus:ring-1 focus:ring-luna-500">
+                        <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none">
+                            <span class="text-xs text-gray-400">đ</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(formGroup);
+            }
+        }
+
+        function saveAdminPrices() {
+            const inputs = document.querySelectorAll(".admin-price-input");
+            inputs.forEach(input => {
+                const key = input.getAttribute("data-key");
+                const val = parseInt(input.value) || 0;
+                LUNA_CONFIG.prices[key] = val;
+            });
+
+            // Lưu cache
+            localStorage.setItem("LUNA_CONFIG_DB", JSON.stringify(LUNA_CONFIG));
+            syncConfigUI();
+            showToast("Đã lưu và đồng bộ toàn bộ bảng giá bánh ngọt mới thành công!", "success");
+        }
+
+        /* --- XỬ LÝ TAB 3: THÔNG TIN TIỆM & HỆ THỐNG LIÊN KẾT --- */
+        function syncAdminTabConfig() {
+            document.getElementById("admin-cfg-pass").value = LUNA_CONFIG.adminPass;
+            document.getElementById("admin-cfg-hotline").value = LUNA_CONFIG.hotline;
+            document.getElementById("admin-cfg-address").value = LUNA_CONFIG.address;
+            document.getElementById("admin-cfg-hours").value = LUNA_CONFIG.workingHours;
+            document.getElementById("admin-cfg-zalo").value = LUNA_CONFIG.zaloPhone;
+
+            document.getElementById("admin-cfg-bankname").value = LUNA_CONFIG.bankName;
+            document.getElementById("admin-cfg-bankno").value = LUNA_CONFIG.bankNo;
+            document.getElementById("admin-cfg-bankholder").value = LUNA_CONFIG.bankHolder;
+        }
+
+        function saveAdminConfig() {
+            LUNA_CONFIG.adminPass = document.getElementById("admin-cfg-pass").value || "admin";
+            LUNA_CONFIG.hotline = document.getElementById("admin-cfg-hotline").value;
+            LUNA_CONFIG.address = document.getElementById("admin-cfg-address").value;
+            LUNA_CONFIG.workingHours = document.getElementById("admin-cfg-hours").value;
+            LUNA_CONFIG.zaloPhone = document.getElementById("admin-cfg-zalo").value;
+
+            LUNA_CONFIG.bankName = document.getElementById("admin-cfg-bankname").value;
+            LUNA_CONFIG.bankNo = document.getElementById("admin-cfg-bankno").value;
+            LUNA_CONFIG.bankHolder = document.getElementById("admin-cfg-bankholder").value;
+
+            // Lưu cache
+            localStorage.setItem("LUNA_CONFIG_DB", JSON.stringify(LUNA_CONFIG));
+            syncConfigUI();
+            showToast("Đã lưu toàn bộ cấu hình thông tin tiệm bánh thành công!", "success");
+        }
+
+        /* ==================== XUẤT BẢN FILE HTML TỰ DỌN DẸP BẢO MẬT ==================== */
+        // Chức năng xuất bản ra file HTML tĩnh sạch sẽ, tự động ghi đè cài đặt sâu vào mã nguồn, dọn sạch dữ liệu cá nhân trước khi khách truy cập
+        function downloadUpgradedSelfCleanHtmlFile() {
+            // Lấy toàn bộ mã nguồn HTML hiện tại của trang web dưới dạng chuỗi văn bản
+            let rawHtmlSource = document.documentElement.outerHTML;
+
+            // Cập nhật sâu chuỗi cài đặt mặc định trong code dựa trên cài đặt thật trong Browser của bạn hiện tại
+            const updatedConfigString = `let LUNA_CONFIG = ${JSON.stringify(LUNA_CONFIG, null, 12)};`;
+            
+            // Tìm và thay thế khối cài đặt trong mã nguồn bằng cấu hình mới được lưu trong database
+            rawHtmlSource = rawHtmlSource.replace(/let LUNA_CONFIG = \{[\s\S]*?prices: \{[\s\S]*?\}[\s\S]*?\};/, updatedConfigString);
+
+            // DỌN DẸP BẢO MẬT: Xóa sạch danh sách giỏ hàng hiển thị, dọn sạch danh sách đơn hàng đã duyệt của Admin và tắt panel admin trước khi xuất bản
+            rawHtmlSource = rawHtmlSource.replace(/let basketList = \[[\s\S]*?\];/, "let basketList = [];");
+            rawHtmlSource = rawHtmlSource.replace(/let localOrdersList = \[[\s\S]*?\];/, "let localOrdersList = [];");
+            rawHtmlSource = rawHtmlSource.replace(/<div id="admin-panel" class="fixed inset-0 z-50 bg-luna-50 overflow-y-auto block">/, '<div id="admin-panel" class="fixed inset-0 z-50 bg-luna-50 overflow-y-auto hidden">');
+
+            // Tạo tệp tải về
+            const textToDownload = "<!DOCTYPE html>\n<html lang=\"vi\">\n" + rawHtmlSource + "\n</html>";
+            const element = document.createElement("a");
+            const file = new Blob([textToDownload], {type: 'text/html;charset=utf-8'});
+            element.href = URL.createObjectURL(file);
+            element.download = "index.html"; // Tải về dưới tên tệp chuẩn index.html để tải thẳng lên Netlify
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+
+            showToast("Đã tạo tệp index.html sạch thành công! Hãy lấy tệp này đăng lên Netlify.", "success");
+        }
+    </script>
+</body>
+</html>
